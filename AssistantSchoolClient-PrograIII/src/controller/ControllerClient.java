@@ -136,11 +136,28 @@ public class ControllerClient implements ActionListener, ItemListener {
 			break;
 
 		case ASIG_COURSE:
-			adminJF.setVisible(false);
-			asigCourseJD = new JDAsigCourse(this);
+			try {
+				output.writeInt(12);
+				int auxiliarT = input.readInt();
+				String[] teachers1 = new String[auxiliarT];
+				for (int i = 0; i < teachers1.length; i++) {
+					teachers1[i] = input.readUTF();
+				}
+				
+				int auxiliarC = input.readInt();
+				String[]courses1 = new String[auxiliarC];
+				for (int i = 0; i < courses1.length; i++) {
+					courses1[i] = input.readUTF();
+				}	
+			
+
+				adminJF.setVisible(false);
+				asigCourseJD = new JDAsigCourse(this, courses1, teachers1);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 
 			break;
-			
 			
 		case ASIG_COURSE_TEACHER:
 			try {

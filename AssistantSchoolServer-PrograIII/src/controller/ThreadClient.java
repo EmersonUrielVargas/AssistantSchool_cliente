@@ -98,18 +98,31 @@ public class ThreadClient extends Thread {
 					manager.addSubject(new Subject(Integer.parseInt(convertS[0]), convertS[1]));
 					break;
 				case 10:
-					String[] asigCourse= input.readUTF().split("#");
+					String[] asigCourse = input.readUTF().split("#");
 					Course courseAsig = manager.askCourse(new Course(asigCourse[0]));
 					Teacher teacherAsi = manager.askTeacher(new Teacher("", "", null, Integer.parseInt(asigCourse[1])));
-					manager.asigCourseToTeacher(courseAsig,teacherAsi);
+					manager.asigCourseToTeacher(courseAsig, teacherAsi);
 					break;
 				case 11:
-					String[] asigSubject= input.readUTF().split("#");
+					String[] asigSubject = input.readUTF().split("#");
 					Subject subjectAsing = manager.askSubject(new Subject(Integer.parseInt(asigSubject[0]), ""));
-					Teacher teacherAsiS = manager.askTeacher(new Teacher("", "", null, Integer.parseInt(asigSubject[1])));
-					manager.asigSubjectToTeacher(subjectAsing,teacherAsiS);
+					Teacher teacherAsiS = manager
+							.askTeacher(new Teacher("", "", null, Integer.parseInt(asigSubject[1])));
+					manager.asigSubjectToTeacher(subjectAsing, teacherAsiS);
 					break;
-				
+				case 12:
+					String[] teachers1 = manager.getTeachersStringOutSubjects().split(",");
+					output.writeInt(teachers1.length);
+					for (int i = 0; i < teachers1.length; i++) {
+						output.writeUTF(teachers1[i]);
+					}
+					String[] courses1 = manager.getCoursesString().split("-");
+					output.writeInt(courses1.length);
+					for (int i = 0; i < courses1.length; i++) {
+						output.writeUTF(courses1[i]);
+					}
+					manager.resetStrings();
+					break;
 				}
 
 			}
@@ -149,7 +162,8 @@ public class ThreadClient extends Thread {
 				teacher.addSubject(subjectTeacher);
 				manager.addTeacher(teacher);
 				User acccesUser = manager.askUser(new User(teacher, TypeUser.TEACHER));
-				output.writeUTF("Su nombre de usuario es " + acccesUser.getNickName() + "Su contraseña de acceso es " + acccesUser.getPassword() );
+				output.writeUTF("Su nombre de usuario es " + acccesUser.getNickName() + "Su contraseña de acceso es "
+						+ acccesUser.getPassword());
 			} else if (Utilities.TypeUser(dataUser[0]) == TypeUser.STUDENT) {
 				Student student = new Student(dataUser[3], dataUser[4], Utilities.TypeId(dataUser[1]),
 						Integer.parseInt(dataUser[2]), dataUser[6]);
