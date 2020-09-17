@@ -43,8 +43,10 @@ public class Constants {
 	public static final String ROUTE_ADD_COURSE_PRESS = "/images/Add_Courses_Pres.png";
 	public static final String ROUTE_SEE_COURSE = "/images/See_Course.png";
 	public static final String ROUTE_SEE_COURSE_PRESS = "/images/See_Course_Press.png";
-	public static final String ROUTE_SEE_SUBJECT = "/images/See_Subject.png";
-	public static final String ROUTE_SEE_SUBJECT_PRESS = "/images/See_Subject_Press.png";
+	public static final String ROUTE_ASIG_SUBJECT = "/images/See_Subject.png";
+	public static final String ROUTE_ASIG_SUBJECT_PRESS = "/images/See_Subject_Press.png";
+	public static final String ROUTE_ASIG_COURSE = "/images/Asig_Course.png";
+	public static final String ROUTE_ASIG_COURSE_PRESS = "/images/Asig_Course_Press.png";
 
 
 	public static final Color BASE_BLUE = Color.decode("#0070BB");

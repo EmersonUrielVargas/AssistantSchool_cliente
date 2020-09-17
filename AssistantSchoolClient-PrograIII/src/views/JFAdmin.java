@@ -7,7 +7,6 @@ import java.io.IOException;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
-import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
 
 import controller.ControllerClient;
@@ -16,19 +15,19 @@ import utils.Constants;
 public class JFAdmin extends JFrame {
 
 	private JPSeeTeachers seeTeachersJP;
-	private JScrollPane scroll;
+	private JSBaseScroll scroll;
 	private JPButtonsAdmin buttonsJP;
 	private JPImagenForeground imagePanelJP;
+	private JPCoursesAndSubjects coursesSubjectsJP;
 
 	public JFAdmin(ControllerClient controller) {
-		this.getContentPane().setBackground(Color.blue);
+		this.getContentPane().setBackground(Color.white);
 		this.setSize(1000, 700);
 		this.setLocationRelativeTo(null);
 		this.setLayout(null);
 		this.setResizable(false);
 		setIconImage(new ImageIcon(getClass().getResource(Constants.ICON)).getImage());
 		initComponents(controller);
-		this.setVisible(true);
 	}
 
 	private void initComponents(ControllerClient controller) {
@@ -36,9 +35,9 @@ public class JFAdmin extends JFrame {
 		buttonsJP.setBounds(0, 0, 1000, 150);
 		add(buttonsJP);
 		imagePanelJP = new JPImagenForeground();
-		imagePanelJP.setBounds(0,200,1000,500);
+		imagePanelJP.setBounds(0,200,1000,550);
 		add(imagePanelJP);
-
+		seeTeachersJP = new JPSeeTeachers(controller);
 
 	}
 
@@ -47,12 +46,23 @@ public class JFAdmin extends JFrame {
 	}
 	
 	public void isVisiblePanelTeachers(boolean isVisible) {
+		
 		seeTeachersJP.setVisible(isVisible);
+	}
+	
+	public void initPanelCourses(ControllerClient controller,String[] subjects,String[]courses) {
+		coursesSubjectsJP = new JPCoursesAndSubjects(controller, subjects, courses);
+		coursesSubjectsJP.setBounds(0, 200, 1000, 550);
+		coursesSubjectsJP.setVisible(true);
+		this.add(coursesSubjectsJP);
+		seeTeachersJP.setVisible(false);
+		imagePanelJP.setVisible(false);
+		coursesSubjectsJP.setVisible(true);
 	}
 
 	public void initPanelTeachers(ControllerClient controller, String[] teachers) {
 		seeTeachersJP = new JPSeeTeachers(controller);
-		seeTeachersJP.setBorder(new EmptyBorder(10, 10, 10, 10));
+		seeTeachersJP.setBounds(0,200,1000,550);
 		initPanelUsers(teachers);
 		int number = 50;
 		JPHeaderUsers headers = new JPHeaderUsers(controller);
@@ -66,10 +76,13 @@ public class JFAdmin extends JFrame {
 			number += 50;
 			seeTeachersJP.add(teacher);
 		}
-		scroll = new JScrollPane();
-		scroll.setViewportView(seeTeachersJP);
-		scroll.setBounds(0, 200, 990, 500);
+		seeTeachersJP.repaint();
+		scroll = new JSBaseScroll(seeTeachersJP);
 		add(scroll);
+	}
+	
+	public void visiblePanelTeachers() {
+		
 	}
 
 	public void initPanelUsers(String[] strings) {
