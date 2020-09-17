@@ -9,9 +9,15 @@ public class Course {
 	private Teacher courseDirector;
 	private AVLTree<Student> students;
 
+	public Course(String nameCourse, Teacher director) {
+		this.nameCourse = nameCourse;
+		this.courseDirector = director;
+		students = new AVLTree<Student>(new ComparatorByStudent());
+	}
+
 	public Course(String nameCourse) {
 		this.nameCourse = nameCourse;
-		students= new AVLTree<Student>(new ComparatorByStudent());
+		students = new AVLTree<Student>(new ComparatorByStudent());
 	}
 
 	public void remoteCourseDirector() {
@@ -45,7 +51,5 @@ public class Course {
 	public void setStudents(AVLTree<Student> students) {
 		this.students = students;
 	}
-	
-	
 
 }

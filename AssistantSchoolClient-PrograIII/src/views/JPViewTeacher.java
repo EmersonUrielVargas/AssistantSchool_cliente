@@ -25,7 +25,7 @@ public class JPViewTeacher extends JPanel {
 		this.setVisible(true);
 	}
 	
-	public String fillPanel(String teacher, String subjects,ControllerClient controller) {
+	public void fillPanel(String teacher, String subjects,ControllerClient controller) {
 		nameUserJL = new JLBaseLabel(Constants.FONT_LOG_IN,Constants.COLOR_DARK_BLUE);
 		documentJL = new JLBaseLabel(Constants.FONT_LOG_IN,Constants.COLOR_DARK_BLUE);
 		subjectsJCB = new JCBBaseComboBox(controller,Constants.FONT_LOG_IN,Constants.COLOR_DARK_BLUE);	
@@ -42,8 +42,7 @@ public class JPViewTeacher extends JPanel {
 		this.add(documentJL);
 		this.add(subjectsJCB);
 		this.add(removeJB);
-		this.setVisible(true);
-		return auxiliar[1].split(" ")[1];
+		this.repaint();
 
 	}
 }

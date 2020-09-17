@@ -38,12 +38,16 @@ public class Teacher extends Person{
 	}
 	
 	public String toStringTeacher() {
-		return this.getName() +"" + this.getLastName() + "-" + this.getTypeId() + " " + this.getNumberId();
+		return this.getName() +"" + this.getLastName() + "-" + this.getTypeId() + "_" + this.getNumberId();
 	}
 	
 	public String toStringSubjects() {
 		convertSubjectsToString(subjects.getRoot());
 		return subjectsString;
+	}
+	
+	public void resetSubjectsString() {
+		subjectsString = "";
 	}
 	
 	

@@ -21,7 +21,7 @@ import utils.Constants;
 
 public class JPButtonsAdmin extends JPanel{
 	private JPHeadName jpHeadName;
-	private JBBaseButton jBShowTeachers,jBShowCourse,jBShowStudents,jBShowLogin;
+	private JBBaseButton jBShowTeachers,jBShowStudents,jBShowLogin;
 	private JPSearch jpSearch;
 	
 	public JPButtonsAdmin(ControllerClient controller) {
@@ -39,7 +39,6 @@ public class JPButtonsAdmin extends JPanel{
 		this.setLayout(new FlowLayout(FlowLayout.CENTER));
 		this.jpSearch = new JPSearch(controller);
 		
-		this.jBShowCourse = new JBBaseButton(Constants.ROUTE_ICON_COURSES, Constants.ROUTE_ICON_COURSES_PRESS, controller, Commands.AC_SHOW_COURSES_BUTTON);
 		this.jBShowStudents = new JBBaseButton(Constants.ROUTE_ICON_STUDENT, Constants.ROUTE_ICON_STUDENT_PRESS, controller, Commands.AC_SHOW_STUDENTS_BUTTON);
 		this.jBShowTeachers = new JBBaseButton(Constants.ROUTE_ICON_TEACHER, Constants.ROUTE_ICON_TEACHER_PRESS, controller, Commands.AC_SHOW_TEACHERS_BUTTON);
 		this.jBShowLogin = new JBBaseButton(Constants.ROUTE_ICON_REGISTER, Constants.ROUTE_ICON_REGISTER_PRESS, controller, Commands.REGISTER_CLIENT);
@@ -47,7 +46,6 @@ public class JPButtonsAdmin extends JPanel{
 		this.add(jpHeadName, new FlowLayout(FlowLayout.LEFT, 10, 20));
 		this.add(jpSearch, new FlowLayout(FlowLayout.CENTER, 20, 0));
 		this.add(jBShowTeachers, new FlowLayout(FlowLayout.RIGHT, 0, 0));
-		this.add(jBShowCourse, new FlowLayout(FlowLayout.RIGHT, 0, 0));
 		this.add(jBShowStudents, new FlowLayout(FlowLayout.RIGHT, 0, 0));
 		this.add(jBShowLogin, new FlowLayout(FlowLayout.RIGHT, 0, 0));
 
@@ -56,7 +54,7 @@ public class JPButtonsAdmin extends JPanel{
 	}
 	
 	public String captureSearchText() {
-		return jpSearch.captureText()
+		return jpSearch.captureText();
 	}
 	
 	

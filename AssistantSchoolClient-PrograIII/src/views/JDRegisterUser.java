@@ -28,7 +28,6 @@ public class JDRegisterUser extends JDialog {
 		this.setLayout(new GridLayout(8, 1));
 		setIconImage(new ImageIcon(getClass().getResource(Constants.ICON)).getImage());
 		initComponents(controllerApp, typeUsers, typeDocumet,subjects,courses);
-		this.setVisible(true);
 	}
 
 	private void initComponents(ControllerClient controllerApp, String[] typeUsers, String[] typeDocumet,String[] subjects,String[] courses) {
