@@ -32,7 +32,7 @@ public class JPButtonsStudent extends JPanel{
 
 	private void init(ControllerClient controller) {
 		this.setBorder(BorderFactory.createEmptyBorder(38, 6, 38, 10));
-		this.jpHeadName = new JPHeadName("Administrador", "student");
+		this.jpHeadName = new JPHeadName("Laura Acevedo", "student");
 		this.setLayout(new FlowLayout(FlowLayout.CENTER));
 		this.jBShowReport = new JBBaseButton(Constants.SHOW_REPORT_ICON, Constants.SHOW_REPORT_ICON_PRESS, controller, Commands.AC_SHOW_REGISTER_BUTTON);
 		this.jBShowLogout = new JBBaseButton(Constants.SHOW_LOGOUT_ICON, Constants.SHOW_LOGOUT_ICON_PRESS, controller, Commands.AC_SHOW_LOGOUT_BUTTON);
