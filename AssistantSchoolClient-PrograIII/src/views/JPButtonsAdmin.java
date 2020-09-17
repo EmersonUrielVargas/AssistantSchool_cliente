@@ -56,7 +56,7 @@ public class JPButtonsAdmin extends JPanel{
 	}
 	
 	public String captureSearchText() {
-		return jpSearch.captureText()
+		return jpSearch.captureText();
 	}
 	
 	

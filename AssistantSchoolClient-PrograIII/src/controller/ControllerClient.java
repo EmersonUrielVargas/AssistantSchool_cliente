@@ -31,10 +31,10 @@ public class ControllerClient implements ActionListener, ItemListener {
 	private JDRegisterUser registerUserJD;
 
 	public ControllerClient() throws FileNotFoundException, IOException {
-		socket = new Socket(HOST, PORT);
-		output = new DataOutputStream(socket.getOutputStream());
-		input = new DataInputStream(socket.getInputStream());
-		initLogin();
+		//socket = new Socket(HOST, PORT);
+//		output = new DataOutputStream(socket.getOutputStream());
+//		input = new DataInputStream(socket.getInputStream());
+//		initLogin();
 	}
 
 	public void initLogin() {

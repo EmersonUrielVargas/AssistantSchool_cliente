@@ -109,32 +109,32 @@ public class Manager {
 		course.setCourseDirector(teacher);
 	}
 
-	public void addPartialNote(PartialNote partialNote, Student student, String subjectName) {
-		student.addPartialNote(partialNote, subjectName);
+	public void addPartialNote(PartialNote partialNote, Student student, int subjectId) {
+		student.addPartialNote(partialNote, subjectId);
 	}
 
-	public void modifyPartialNote(String subjectName, String topic, double value, String notation, Student student) {
+	public void modifyPartialNote(int subjectId, String topic, double value, String notation, Student student) {
 		Student studentAux = students.ask(student, students.getRoot()).getData();
-		FinalNote auxiliar = studentAux.askFinalNote(subjectName);
+		FinalNote auxiliar = studentAux.askFinalNote(subjectId);
 		auxiliar.modifyPartialNote(topic, value, notation);
 	}
 
-	public PartialNote askPartialNote(String topic, String subjectName, Student student) {
+	public PartialNote askPartialNote(String topic,int subjectId, Student student) {
 		Student studentAux = students.ask(student, students.getRoot()).getData();
-		FinalNote auxiliar = studentAux.askFinalNote(subjectName);
+		FinalNote auxiliar = studentAux.askFinalNote(subjectId);
 		return auxiliar.askPartialNote(topic);
 	}
 
-	public void addComment(String topic, String comment, String subjectName, Student student) {
+	public void addComment(String topic, String comment, int subjectId, Student student) {
 		Student studentAux = students.ask(student, students.getRoot()).getData();
-		FinalNote auxiliar = studentAux.askFinalNote(subjectName);
+		FinalNote auxiliar = studentAux.askFinalNote(subjectId);
 		PartialNote note = auxiliar.askPartialNote(topic);
 		note.setComment(comment);
 	}
 
-	public FinalNote askFinalNote(String subjectName, Student student) {
+	public FinalNote askFinalNote(int subjectId, Student student) {
 		Student studentAux = students.ask(student, students.getRoot()).getData();
-		return studentAux.askFinalNote(subjectName);
+		return studentAux.askFinalNote(subjectId);
 	}
 
 	public AVLTree<User> getUsers() {

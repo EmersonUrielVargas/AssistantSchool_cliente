@@ -123,5 +123,11 @@ public class Constants {
 	public static final String SHOW_LOGOUT_ICON_PRESS = "/images/SHOW_TEACHERS_ICON.png";
 	public static final String SHOW_REGISTER_USER_ICON = "/images/SHOW_TEACHERS_ICON.png";
 	public static final String SHOW_REGISTER_USER_ICON_PRESS = "/images/SHOW_TEACHERS_ICON.png";
+	
+	
+//Constants of Jbuttons student-----------------------------------------------
+		public static final String SHOW_REPORT_ICON = "/images/SHOW_TEACHERS_ICON.png";
+		public static final String SHOW_REPORT_ICON_PRESS = "/images/SHOW_TEACHERS_ICON.png";
+
 
 }

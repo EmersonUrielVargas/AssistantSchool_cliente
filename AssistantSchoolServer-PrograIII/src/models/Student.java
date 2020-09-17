@@ -14,36 +14,32 @@ public class Student extends Person {
 		this.nameCourse = nameCourse;
 		finalNotes = new AVLTree<>(new ComparatorByFinalNoteStudent());
 	}
-	
-	
-	
-	
 
-//	public void addPartialNote(PartialNote partialNote, String subjectName) {
-//		FinalNote auxiliar = this.askFinalNote(subjectName);
-//		auxiliar.addPartialNote(partialNote);
-//	}
-//
-//	public void modifyPartialNote(String subjectName, String topic, double value, String notation) {
-//		FinalNote auxiliar = this.askFinalNote(subjectName);
-//		auxiliar.modifyPartialNote(topic, value, notation);
-//	}
-//
-//	public PartialNote askPartialNote(String topic, String subjectName) {
-//		FinalNote auxiliar = this.askFinalNote(subjectName);
-//		return auxiliar.askPartialNote(topic);
-//	}
-//
-//	public void addComment(String topic, String comment, String subjectName) {
-//		FinalNote auxiliar = this.askFinalNote(subjectName);
-//		PartialNote note = auxiliar.askPartialNote(topic);
-//		note.setComment(comment);
-//	}
-//
-//	public FinalNote askFinalNote(String subjectName) {
-//		return finalNotes.ask(new FinalNote(new Subject(0, subjectName, null)), finalNotes.getRoot()).getData();
-//
-//	}
+	public void addPartialNote(PartialNote partialNote,int subjectId) {
+		FinalNote auxiliar = this.askFinalNote(subjectId);
+		auxiliar.addPartialNote(partialNote);
+	}
+
+	public void modifyPartialNote(int subjectId, String topic, double value, String notation) {
+		FinalNote auxiliar = this.askFinalNote(subjectId);
+		auxiliar.modifyPartialNote(topic, value, notation);
+	}
+
+	public PartialNote askPartialNote(String topic, int subjectId) {
+		FinalNote auxiliar = this.askFinalNote(subjectId);
+		return auxiliar.askPartialNote(topic);
+	}
+
+	public void addComment(String topic, String comment, int subjectId) {
+		FinalNote auxiliar = this.askFinalNote(subjectId);
+		PartialNote note = auxiliar.askPartialNote(topic);
+		note.setComment(comment);
+	}
+
+	public FinalNote askFinalNote(int subjectId) {
+		return finalNotes.ask(new FinalNote(subjectId), finalNotes.getRoot()).getData();
+
+	}
 
 	public String getNameCourse() {
 		return nameCourse;
