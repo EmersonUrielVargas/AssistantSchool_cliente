@@ -18,7 +18,7 @@ public class JPShowPanelNotes extends JPanel{
 	
 	public JPShowPanelNotes(ControllerClient controller,String namePanel) {
 		super(new FlowLayout());
-		this.setSize(998, 60);
+		this.setSize(900, 60);
 		this.listNotes = new JPNote[7];
 		initComponents(controller, formatTitle(namePanel, 20));
 	}
@@ -34,9 +34,11 @@ public class JPShowPanelNotes extends JPanel{
 		this.add(jPNoteFinal);
 	}
 	
-	public void addNotes(String[] listNotes) {
-		for (int i = 0; i < 7; i++) {
-			this.listNotes[i].setNote(listNotes[i]);
+	public void addNotes(String[] notes) {
+		String[] noteOk;
+		for (int i = 0; i < notes.length; i++) {
+			noteOk = notes[i].split("&");
+			this.listNotes[i].initToStudent(noteOk[0], noteOk[1], noteOk[2], noteOk[3]);
 		}
 	}
 	
@@ -45,17 +47,17 @@ public class JPShowPanelNotes extends JPanel{
 	}
 	
 	public void initToTeacher(String[] notes) {
-		String[] noteOk;
-		for (int i = 0; i < listNotes.length; i++) {
-			noteOk = notes[i].split("|");
+		String[] noteOk = new String[notes.length ];
+		for (int i = 0; i < notes.length; i++) {
+			noteOk = notes[i].split("&");
 			this.listNotes[i].initToTeacher(noteOk[0], noteOk[1], noteOk[2], noteOk[3]);
 		}
 	}
 	
 	public void initToStudent(String[] notes) {
 		String[] noteOk;
-		for (int i = 0; i < listNotes.length; i++) {
-			noteOk = notes[i].split("|");
+		for (int i = 0; i < notes.length; i++) {
+			noteOk = notes[i].split("&");
 			this.listNotes[i].initToStudent(noteOk[0], noteOk[1], noteOk[2], noteOk[3]);
 		}
 	}
