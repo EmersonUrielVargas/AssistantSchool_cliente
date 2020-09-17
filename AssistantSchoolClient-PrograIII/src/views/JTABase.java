@@ -24,6 +24,16 @@ public class JTABase extends JTextArea {
 //		this.setEditable(false);
 //	}
 	
+	public JTABase( Font font, Color foreColor, int width, int height) {
+		this.setFont(font);
+		this.setForeground(foreColor);
+		this.setBorder(null);
+		this.setSize(width, height);
+		this.setPreferredSize(new Dimension(width, height));
+		this.setLineWrap(true);
+		this.setEditable(true);
+	}
+	
 //	private Integer [] determineDimension(String text) {
 //		Integer [] dimension = new Integer[2];
 //		int textLength = text.length();
