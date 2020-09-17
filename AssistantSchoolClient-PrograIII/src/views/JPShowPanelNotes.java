@@ -1,5 +1,6 @@
 package views;
 
+import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -17,9 +18,9 @@ public class JPShowPanelNotes extends JPanel{
 	
 	public JPShowPanelNotes(ControllerClient controller,String namePanel) {
 		super(new FlowLayout());
-		this.setSize(990, 60);
+		this.setSize(998, 60);
 		this.listNotes = new JPNote[7];
-		initComponents(controller, namePanel);
+		initComponents(controller, formatTitle(namePanel, 20));
 	}
 
 	private void initComponents(ControllerClient controller, String namePanel) {
@@ -43,29 +44,36 @@ public class JPShowPanelNotes extends JPanel{
 		this.jPNoteFinal.setNote(finalNote);
 	}
 	
-	public void initToTeacher(String[] achievement, String[] commentTeacher, String[] commentStudent) {
+	public void initToTeacher(String[] notes) {
+		String[] noteOk;
 		for (int i = 0; i < listNotes.length; i++) {
-			this.listNotes[i].initToStudent(achievement[i+1], commentTeacher[i+1], commentStudent[i+1]);
+			noteOk = notes[i].split("|");
+			this.listNotes[i].initToTeacher(noteOk[0], noteOk[1], noteOk[2], noteOk[3]);
 		}
-		this.jPNoteFinal.initToTeacher(achievement[0], commentTeacher[0], commentStudent[0]);
 	}
 	
-	public void initToStudent(String[] achievement, String[] commentTeacher, String[] commentStudent) {
+	public void initToStudent(String[] notes) {
+		String[] noteOk;
 		for (int i = 0; i < listNotes.length; i++) {
-			this.listNotes[i].initToStudent(achievement[i+1], commentTeacher[i+1], commentStudent[i+1]);
+			noteOk = notes[i].split("|");
+			this.listNotes[i].initToStudent(noteOk[0], noteOk[1], noteOk[2], noteOk[3]);
 		}
-		this.jPNoteFinal.initToStudent(achievement[0], commentTeacher[0], commentStudent[0]);
 	}
 	
-	public static void main(String[] args) throws FileNotFoundException, IOException {
-		JFrame frame = new JFrame();
-		frame.setLayout(new FlowLayout());
-		frame.add(new JPShowPanelNotes(new ControllerClient(), "Calculo"));
-		frame.add(new JPShowPanelNotes(new ControllerClient(), "Matematicas"));
-		frame.add(new JPShowPanelNotes(new ControllerClient(), "Fisica"));
-		frame.setVisible(true);
-		frame.setSize(1000, 500);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	private String formatTitle(String text,int sizeMax) {
+		String textFormat = text;
+		char[] textTochar = new char[sizeMax-text.length()];
+		if (textTochar.length < sizeMax) {
+			for (int i = 0; i < textTochar.length; i++) {
+				textTochar[i] = " ".charAt(0);
+			}
+		}
+		for (int i = 0; i < textTochar.length; i++) {
+			textFormat = textFormat +textTochar[i];
+		}
+		return textFormat;
 	}
+	
+	
 
 }

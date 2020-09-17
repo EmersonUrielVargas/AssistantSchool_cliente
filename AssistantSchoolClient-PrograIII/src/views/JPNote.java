@@ -45,7 +45,6 @@ public class JPNote extends JPanel{
 		
 		this.add(jtNote);
 		this.add(jbshowcommits);
-		this.add(jbshowcommits);
 	}
 
 
@@ -79,11 +78,13 @@ public class JPNote extends JPanel{
 		this.jtNote.setEditable(isEditable);
 	}
 	
-	public void initToTeacher(String achievement, String commentTeacher, String commentStudent) {
+	public void initToTeacher(String valuenote, String achievement, String commentTeacher, String commentStudent) {
+		this.jtNote.setText(valuenote);
 		this.jdcommentN.initToTeacher(achievement, commentTeacher, commentStudent);
 	}
 	
-	public void initToStudent(String achievement, String commentTeacher, String commentStudent) {
+	public void initToStudent(String valuenote, String achievement, String commentTeacher, String commentStudent) {
+		this.jtNote.setText(valuenote);
 		this.jdcommentN.initToStudent(achievement, commentTeacher, commentStudent);
 	}
 	
