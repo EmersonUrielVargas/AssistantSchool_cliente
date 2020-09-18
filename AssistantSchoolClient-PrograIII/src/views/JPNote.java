@@ -96,6 +96,10 @@ public class JPNote extends JPanel{
 		return this.jtNote.getText();
 	}
 	
+	public void setVisbleJDialogComments(boolean isVisible) {
+		this.jdcommentN.setVisible(isVisible);
+	}
+	
 	
 	
 

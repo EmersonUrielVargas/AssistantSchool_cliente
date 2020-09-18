@@ -87,7 +87,6 @@ public class JPShowPanelNotes extends JPanel{
 		}
 		return values;
 	}
-	
-	
+
 
 }
