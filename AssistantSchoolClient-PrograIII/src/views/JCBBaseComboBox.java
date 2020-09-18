@@ -25,8 +25,9 @@ public class JCBBaseComboBox extends JComboBox<Object>{
 		this.setForeground(textColor);
 		this.addItemListener(controller);
 		this.setModel(new DefaultComboBoxModel<>(list));
+		this.setSelectedItem(list[0]);
 	}
-	
+		
 	public JCBBaseComboBox(ControllerClient controller,Font font,Color textColor) {
 		this.setFont(font);
 		Border line = BorderFactory.createLineBorder(Color.BLACK, 1);

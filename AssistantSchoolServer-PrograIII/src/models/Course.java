@@ -47,9 +47,12 @@ public class Course {
 	public AVLTree<Student> getStudents() {
 		return students;
 	}
+	
+	public void addStudent(Student student) {
+		students.insert(student);
+	}
 
 	public void setStudents(AVLTree<Student> students) {
 		this.students = students;
 	}
-
 }

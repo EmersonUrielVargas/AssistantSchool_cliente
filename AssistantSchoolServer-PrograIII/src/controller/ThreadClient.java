@@ -105,6 +105,7 @@ public class ThreadClient extends Thread {
 					break;
 				case 11:
 					String[] asigSubject = input.readUTF().split("#");
+					System.out.println(asigSubject[0]);
 					Subject subjectAsing = manager.askSubject(new Subject(Integer.parseInt(asigSubject[0]), ""));
 					Teacher teacherAsiS = manager
 							.askTeacher(new Teacher("", "", null, Integer.parseInt(asigSubject[1])));
@@ -122,6 +123,20 @@ public class ThreadClient extends Thread {
 						output.writeUTF(courses1[i]);
 					}
 					manager.resetStrings();
+					break;
+				case 13:
+					String[] teachers2 = manager.getTeachersStringOutSubjects().split(",");
+					output.writeInt(teachers2.length);
+					for (int i = 0; i < teachers2.length; i++) {
+						output.writeUTF(teachers2[i]);
+					}
+					String[] subjects1 = manager.getSubjectsString().split("-");
+					output.writeInt(subjects1.length);
+					for (int i = 0; i < subjects1.length; i++) {
+						output.writeUTF(subjects1[i]);
+					}
+					manager.resetStrings();
+					
 					break;
 				}
 
@@ -168,6 +183,9 @@ public class ThreadClient extends Thread {
 				Student student = new Student(dataUser[3], dataUser[4], Utilities.TypeId(dataUser[1]),
 						Integer.parseInt(dataUser[2]), dataUser[6]);
 				manager.addStudent(student);
+				User acccesUser = manager.askUser(new User(student, TypeUser.TEACHER));
+				output.writeUTF("Su nombre de usuario es " + acccesUser.getNickName() + "Su contraseña de acceso es "
+						+ acccesUser.getPassword());
 			}
 		} catch (IOException e) {
 			// TODO Auto-generated catch block

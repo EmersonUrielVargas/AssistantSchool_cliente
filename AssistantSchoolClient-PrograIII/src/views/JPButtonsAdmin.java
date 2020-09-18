@@ -21,7 +21,7 @@ import utils.Constants;
 
 public class JPButtonsAdmin extends JPanel{
 	private JPHeadName jpHeadName;
-	private JBBaseButton jBShowTeachers,jBShowStudents,jBShowLogin;
+	private JBBaseButton jBShowTeachers,jBShowStudents,jBShowLogin,closeSesionJB;
 	private JPSearch jpSearch;
 	
 	public JPButtonsAdmin(ControllerClient controller) {
@@ -42,12 +42,14 @@ public class JPButtonsAdmin extends JPanel{
 		this.jBShowStudents = new JBBaseButton(Constants.ROUTE_ICON_STUDENT, Constants.ROUTE_ICON_STUDENT_PRESS, controller, Commands.AC_SHOW_STUDENTS_BUTTON);
 		this.jBShowTeachers = new JBBaseButton(Constants.ROUTE_ICON_TEACHER, Constants.ROUTE_ICON_TEACHER_PRESS, controller, Commands.AC_SHOW_TEACHERS_BUTTON);
 		this.jBShowLogin = new JBBaseButton(Constants.ROUTE_ICON_REGISTER, Constants.ROUTE_ICON_REGISTER_PRESS, controller, Commands.REGISTER_CLIENT);
+		this.closeSesionJB = new JBBaseButton(Constants.SHOW_LOGOUT_ICON,Constants.SHOW_LOGOUT_ICON_PRESS,controller,Commands.RETURN_LOG_IN);
 		
 		this.add(jpHeadName, new FlowLayout(FlowLayout.LEFT, 10, 20));
 		this.add(jpSearch, new FlowLayout(FlowLayout.CENTER, 20, 0));
 		this.add(jBShowTeachers, new FlowLayout(FlowLayout.RIGHT, 0, 0));
 		this.add(jBShowStudents, new FlowLayout(FlowLayout.RIGHT, 0, 0));
 		this.add(jBShowLogin, new FlowLayout(FlowLayout.RIGHT, 0, 0));
+		this.add(closeSesionJB, new FlowLayout(FlowLayout.RIGHT, 0, 0));
 
 		
 		this.setVisible(true);		

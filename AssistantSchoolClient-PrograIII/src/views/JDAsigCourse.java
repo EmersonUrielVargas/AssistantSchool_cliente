@@ -1,7 +1,6 @@
 package views;
 
 import java.awt.Color;
-import java.awt.Font;
 import java.awt.GridLayout;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -10,7 +9,6 @@ import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JDialog;
-import javax.swing.JTextField;
 
 import controller.Commands;
 import controller.ControllerClient;
@@ -20,12 +18,14 @@ public class JDAsigCourse extends JDialog {
 
 	private static final long serialVersionUID = 1L;
 	private JCBBaseComboBox coursesJCB,teachersJCB;
-	private JButton createJB;
+	private JButton createJB,returnPanel;
 
 	public JDAsigCourse(ControllerClient controllerApp,String[] courses , String[]teachers) {
+		this.setDefaultCloseOperation(0);
+
 		this.setSize(300, 300);
 		this.setLocationRelativeTo(null);
-		this.setLayout(new GridLayout(3, 1));
+		this.setLayout(new GridLayout(4, 1));
 		setIconImage(new ImageIcon(getClass().getResource(Constants.ICON)).getImage());
 		initComponents(controllerApp,courses,teachers);
 		this.setVisible(true);
@@ -52,6 +52,16 @@ public class JDAsigCourse extends JDialog {
 		createJB.setActionCommand(Commands.ASIG_COURSE_TEACHER.toString());
 		createJB.addActionListener(controllerApp);
 		this.add(createJB);
+		
+		returnPanel = new JButton();
+		returnPanel.setFont(Constants.FONT_LOG_IN);
+		returnPanel.setText("Retornar al panel anterior ");
+		returnPanel.setFocusable(false);
+		returnPanel.setBackground((Constants.COLOR_BLUE));
+		returnPanel.setForeground(Color.WHITE);
+		returnPanel.setActionCommand(Commands.RETURN_PANEL_2.toString());
+		returnPanel.addActionListener(controllerApp);
+		this.add(returnPanel);
 	}
 
 	public String getDatesUser() {
@@ -62,7 +72,8 @@ public class JDAsigCourse extends JDialog {
 	}
 	
 	public static void main(String[] args) throws FileNotFoundException, IOException {
-//		new JDAsigCourse(new ControllerClient());
-	}
+		String[] teachers = { "Ped", "Mat", "Yes" };
+		String[] subjetcs = { "Mat", "Alg" };
+		new JDAsigCourse(new ControllerClient(), subjetcs, teachers);	}
 
 }

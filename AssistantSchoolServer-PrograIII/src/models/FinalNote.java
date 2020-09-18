@@ -6,13 +6,13 @@ import structures.NodeAVL;
 
 public class FinalNote {
 
-	private Subject subject;
+	private int subjectId;
 	private AVLTree<PartialNote> partialNotes;
 	private double value;
 
-	public FinalNote(Subject subject) {
+	public FinalNote(int subjectId) {
 		super();
-		this.subject = subject;
+		this.subjectId = subjectId;
 		partialNotes = new AVLTree<>(new ComparatorByPartialNote());
 	}
 
@@ -45,12 +45,12 @@ public class FinalNote {
 
 	}
 
-	public Subject getSubject() {
-		return subject;
+	public int getSubject() {
+		return subjectId;
 	}
 
-	public void setSubject(Subject subject) {
-		this.subject = subject;
+	public void setSubject(int subjectId) {
+		this.subjectId = subjectId;
 	}
 
 	public AVLTree<PartialNote> getPartialNotes() {

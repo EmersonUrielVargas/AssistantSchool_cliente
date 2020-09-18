@@ -7,9 +7,12 @@ public class Constants {
 
 	// Constantes Generales del Frame
 	public static final String ICON = "/images/Icon.png";
+	public static final String[] HEADERS_SUBJECT = {"Nombre de Asignatura","Logros","Nota Final"};
 
 	// Init Of Session
 	public static final String INIT_SESION_IMAGEN = "/images/Init_Session_Imagen.png";
+	public static final String ROUTE_IMAGEN_REPORT_STUDENT = "/images/Imagen_Student.png";
+
 	public static final String INIT_SESION = "/images/Init_Sesion.png";
 	public static final String INIT_SESION_PRESS = "/images/Init_Sesion_Press.png";
 	public static final String ERROR_USER = "El Usuario no ha sido encontrado";
@@ -119,11 +122,26 @@ public class Constants {
 	public static final String SHOW_STUDENTS_ICON_PRESS = "/images/SHOW_TEACHERS_ICON.png";
 	public static final String SHOW_SUBJECTS_ICON = "/images/SHOW_TEACHERS_ICON.png";
 	public static final String SHOW_SUBJECTS_ICON_PRESS = "/images/SHOW_TEACHERS_ICON.png";
-	public static final String SHOW_LOGIN_ICON = "/images/SHOW_TEACHERS_ICON.png";
-	public static final String SHOW_LOGIN_ICON_PRESS = "/images/SHOW_TEACHERS_ICON.png";
-	public static final String SHOW_LOGOUT_ICON = "/images/SHOW_TEACHERS_ICON.png";
-	public static final String SHOW_LOGOUT_ICON_PRESS = "/images/SHOW_TEACHERS_ICON.png";
+	
+	public static final String SHOW_LOGOUT_ICON = "/images/SHOW_LOGOUT_ICON.png";
+	public static final String SHOW_LOGOUT_ICON_PRESS = "/images/SHOW_LOGOUT_ICON_PRESS.png";
 	public static final String SHOW_REGISTER_USER_ICON = "/images/SHOW_TEACHERS_ICON.png";
 	public static final String SHOW_REGISTER_USER_ICON_PRESS = "/images/SHOW_TEACHERS_ICON.png";
+	
+	
+//Constants of Jbuttons student-----------------------------------------------
+		public static final String SHOW_REPORT_ICON = "/images/SHOW_REPORT_ICON.png";
+		public static final String SHOW_REPORT_ICON_PRESS = "/images/SHOW_REPORT_ICON_PRESS.png";
+		public static final String SHOW_COMMENTS_ICON = "/images/SHOW_COMMENTS_ICON.png";
+		public static final String SHOW_COMMENTS_ICON_PRESS = "/images/SHOW_COMMENTS_ICON_PRESS.png";
+		
+		public static final String SHOW_NOTES_ICON = "/images/SHOW_NOTES_ICON.png";
+		public static final String SHOW_NOTES_ICON_PRESS = "/images/SHOW_NOTES_ICON_PRESS.png";
+		
+		public static final String SAVE_COMMENTS_ICON = "/images/SAVE_COMMENTS_ICON.png";
+		public static final String SAVE_COMMENTS_ICON_PRESS = "/images/SAVE_COMMENTS_ICON_PRESS.png";
+		
+		public static final String ICON_ALERT_RED = "/images/ALERT_ICON.png";
+
 
 }

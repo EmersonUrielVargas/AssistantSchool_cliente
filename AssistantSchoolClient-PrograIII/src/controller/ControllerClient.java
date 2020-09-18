@@ -39,10 +39,10 @@ public class ControllerClient implements ActionListener, ItemListener {
 	private JDAsigSubject asigSubjectJD;
 
 	public ControllerClient() throws FileNotFoundException, IOException {
-		socket = new Socket(HOST, PORT);
-		output = new DataOutputStream(socket.getOutputStream());
-		input = new DataInputStream(socket.getInputStream());
-		initLogin();
+//		socket = new Socket(HOST, PORT);
+//		output = new DataOutputStream(socket.getOutputStream());
+//		input = new DataInputStream(socket.getInputStream());
+//		initLogin();
 	}
 
 	public void initLogin() {
@@ -80,6 +80,11 @@ public class ControllerClient implements ActionListener, ItemListener {
 			addClient();
 			break;
 
+		case RETURN_LOG_IN:
+			adminJF.setVisible(false);
+			loginJD = new JDLogin(this, Constants.TYPE_USERS);
+			loginJD.setVisible(true);
+			break;
 		case AC_SHOW_TEACHERS_BUTTON:
 			addTeachers();
 			break;
@@ -171,8 +176,25 @@ public class ControllerClient implements ActionListener, ItemListener {
 			break;
 			
 		case ASIG_SUBJECT:
-			adminJF.setVisible(false);
-			asigSubjectJD = new JDAsigSubject(this);
+			try {
+				output.writeInt(13);
+				int auxiliarT = input.readInt();
+				String[] teachers1 = new String[auxiliarT];
+				for (int i = 0; i < teachers1.length; i++) {
+					teachers1[i] = input.readUTF();
+				}
+				
+				int auxiliarS = input.readInt();
+				String[]subjects = new String[auxiliarS];
+				for (int i = 0; i < subjects.length; i++) {
+					subjects[i] = input.readUTF();
+				}	
+				adminJF.setVisible(false);
+				asigSubjectJD = new JDAsigSubject(this, subjects, teachers1);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+
 			break;
 			
 		case ASIG_SUBJECT_TEACHER:
@@ -184,6 +206,14 @@ public class ControllerClient implements ActionListener, ItemListener {
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
+			break;
+		case RETURN_PANEL_1:
+			asigSubjectJD.setVisible(false);
+			adminJF.setVisible(true);
+			break;
+		case RETURN_PANEL_2:
+			asigCourseJD.setVisible(false);
+			adminJF.setVisible(true);
 			break;
 		}
 	}
@@ -271,7 +301,6 @@ public class ControllerClient implements ActionListener, ItemListener {
 	}
 
 	private void writeDatesInitSesion() {
-
 		try {
 			output.writeInt(1);
 			String[] datas = loginJD.getDataLogIn();

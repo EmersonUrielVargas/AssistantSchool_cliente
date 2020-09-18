@@ -120,41 +120,44 @@ public class Manager {
 	public void assingTeacherToCourse(Teacher teacher, Course course) {
 		course.setCourseDirector(teacher);
 	}
+
+	public void addPartialNote(PartialNote partialNote, Student student, int subjectId) {
+		student.addPartialNote(partialNote, subjectId);
+	}
 	
 	public void addCourse(Course course) {
 		courses.insert(course);
+	}
+
+
+	public void modifyPartialNote(int subjectId, String topic, double value, String notation, Student student) {
+		Student studentAux = students.ask(student, students.getRoot()).getData();
+		FinalNote auxiliar = studentAux.askFinalNote(subjectId);
+		auxiliar.modifyPartialNote(topic, value, notation);
 	}
 	
 	public Course askCourse(Course course) {
 		return courses.ask(course, courses.getRoot()).getData();
 	}
-//	public void addPartialNote(PartialNote partialNote, Student student, String subjectName) {
-//		student.addPartialNote(partialNote, subjectName);
-//	}
-//
-//	public void modifyPartialNote(String subjectName, String topic, double value, String notation, Student student) {
-//		Student studentAux = students.ask(student, students.getRoot()).getData();
-//		FinalNote auxiliar = studentAux.askFinalNote(subjectName);
-//		auxiliar.modifyPartialNote(topic, value, notation);
-//	}
-//
-//	public PartialNote askPartialNote(String topic, String subjectName, Student student) {
-//		Student studentAux = students.ask(student, students.getRoot()).getData();
-//		FinalNote auxiliar = studentAux.askFinalNote(subjectName);
-//		return auxiliar.askPartialNote(topic);
-//	}
-//
-//	public void addComment(String topic, String comment, String subjectName, Student student) {
-//		Student studentAux = students.ask(student, students.getRoot()).getData();
-//		FinalNote auxiliar = studentAux.askFinalNote(subjectName);
-//		PartialNote note = auxiliar.askPartialNote(topic);
-//		note.setComment(comment);
-//	}
-//
-//	public FinalNote askFinalNote(String subjectName, Student student) {
-//		Student studentAux = students.ask(student, students.getRoot()).getData();
-//		return studentAux.askFinalNote(subjectName);
-//	}
+
+
+	public PartialNote askPartialNote(String topic,int subjectId, Student student) {
+		Student studentAux = students.ask(student, students.getRoot()).getData();
+		FinalNote auxiliar = studentAux.askFinalNote(subjectId);
+		return auxiliar.askPartialNote(topic);
+	}
+
+	public void addComment(String topic, String comment, int subjectId, Student student) {
+		Student studentAux = students.ask(student, students.getRoot()).getData();
+		FinalNote auxiliar = studentAux.askFinalNote(subjectId);
+		PartialNote note = auxiliar.askPartialNote(topic);
+		note.setComment(comment);
+	}
+
+	public FinalNote askFinalNote(int subjectId, Student student) {
+		Student studentAux = students.ask(student, students.getRoot()).getData();
+		return studentAux.askFinalNote(subjectId);
+	}
 
 	public AVLTree<User> getUsers() {
 		return users;
@@ -288,6 +291,19 @@ public class Manager {
 		this.teachersString="";
 	}
 	
+	public void addStudentsToCourse(Course course) {
+		studentsToCourse(students.getRoot(),course);
+	}
+	
+	private void studentsToCourse(NodeAVL<Student> auxiliar,Course course) {
+		if (auxiliar != null) {
+			studentsToCourse(auxiliar.getLeft(),course);
+			if(auxiliar.getData().getNameCourse().equals(course.getNameCourse())){
+				course.addStudent(auxiliar.getData());
+			}
+			studentsToCourse(auxiliar.getRigth(),course);
+		}
+	}
 	
 
 	public static void main(String[] args) {

@@ -4,20 +4,11 @@ public class Subject {
 
 	private int subjectCode;
 	private String subjectName;
-	private FinalNote finalNote;
 
 	public Subject(int subjectCode, String subjectName) {
 		super();
 		this.subjectCode = subjectCode;
 		this.subjectName = subjectName;
-	}
-
-	public FinalNote getFinalNote() {
-		return finalNote;
-	}
-
-	public void setFinalNote(FinalNote finalNote) {
-		this.finalNote = finalNote;
 	}
 
 	public int getSubjectCode() {

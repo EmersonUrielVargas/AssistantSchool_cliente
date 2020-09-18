@@ -25,5 +25,9 @@ public class JPHeadName extends JPanel{
 		this.setVisible(true);
 	}
 	
+	public void setNameUser(String nameUser) {
+		this.jLNameUser.setText(nameUser);
+	}
+	
 
 }
