@@ -25,11 +25,19 @@ public class JPNote extends JPanel implements ActionListener{
 	private JBBaseButton jbshowcommits;
 	private JDialogCommitsNote jdcommentN;
 	
+<<<<<<< HEAD
 	public JPNote(ControllerClient controller,String TypeUser) {
+=======
+	public JPNote(ControllerClient controller,String typeUser) {
+>>>>>>> branch 'master' of https://github.com/EmersonUrielVargas/AssistantSchool_cliente.git
 		super(new FlowLayout());
 		this.setSize(15, 10);
+<<<<<<< HEAD
 		this.setBackground(Color.WHITE);
 		init(controller);
+=======
+		init(controller, typeUser);
+>>>>>>> branch 'master' of https://github.com/EmersonUrielVargas/AssistantSchool_cliente.git
 		this.setBorder(BorderFactory.createLineBorder(Constants.DARK_BLUE));
 	}
 	
@@ -42,10 +50,14 @@ public class JPNote extends JPanel implements ActionListener{
 		this.add(jtNote);
 	}
 	
-	private void init(ControllerClient controller) {
+	private void init(ControllerClient controller, String typeUser) {
 		this.jtNote = new JTFBaseTextField(Constants.BASE_BLUE, Constants.TWENTY_BASE_FONT, 3);
 		this.jbshowcommits = new JBBaseButton(Constants.SHOW_COMMENTS_ICON, Constants.SHOW_COMMENTS_ICON_PRESS,this, Commands.AC_SHOW_COMMENTS_BUTTON);
+<<<<<<< HEAD
 		this.jdcommentN = new JDialogCommitsNote(this);
+=======
+		this.jdcommentN = new JDialogCommitsNote(this, typeUser);
+>>>>>>> branch 'master' of https://github.com/EmersonUrielVargas/AssistantSchool_cliente.git
 		this.add(jtNote);
 		this.add(jbshowcommits);
 	}
@@ -78,12 +90,27 @@ public class JPNote extends JPanel implements ActionListener{
 	}
 	
 	
+<<<<<<< HEAD
 	public void initToTeacher(String topic,String valuenote, String achievement, String commentTeacher, String commentStudent) {
 		this.jdcommentN.initData(topic, valuenote, achievement, commentTeacher, commentStudent);
+=======
+	public void initToTeacher() {
+		this.jdcommentN.initToTeacher();
+>>>>>>> branch 'master' of https://github.com/EmersonUrielVargas/AssistantSchool_cliente.git
 		this.jtNote.setText(this.jdcommentN.getValues()[1]);
+		this.jtNote.setEditable(true);
+	}
+	public void initToStudent() {
+		this.jdcommentN.initToStudent();
+		this.jtNote.setText(this.jdcommentN.getValues()[1]);
+		this.jtNote.setEditable(false);
 	}
 	
+<<<<<<< HEAD
 	public void initToStudent(String topic,String valuenote, String achievement, String commentTeacher, String commentStudent) {
+=======
+	public void initData(String topic,String valuenote, String achievement, String commentTeacher, String commentStudent) {
+>>>>>>> branch 'master' of https://github.com/EmersonUrielVargas/AssistantSchool_cliente.git
 		this.jdcommentN.initData(topic, valuenote, achievement, commentTeacher, commentStudent);
 		this.jtNote.setText(this.jdcommentN.getValues()[1]);
 	}
@@ -104,6 +131,10 @@ public class JPNote extends JPanel implements ActionListener{
 	public void actionPerformed(ActionEvent actionEvent) {
 		switch (Commands.valueOf(actionEvent.getActionCommand())) {
 		case AC_SHOW_COMMENTS_BUTTON:
+<<<<<<< HEAD
+=======
+			this.setNote(this.jtNote.getText());
+>>>>>>> branch 'master' of https://github.com/EmersonUrielVargas/AssistantSchool_cliente.git
 			this.jdcommentN.setVisible(true);
 			break;
 		case AC_SAVE_COMMENTS_BUTTON:

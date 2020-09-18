@@ -29,16 +29,28 @@ public class JDialogCommitsNote extends JDialog{
 	private JTABase jTAcommentS;
 	private JBBaseButton jBsave;
 	
+<<<<<<< HEAD
 	public JDialogCommitsNote(ActionListener ac) {
+=======
+	public JDialogCommitsNote(ActionListener ac, String typeUser) {
+>>>>>>> branch 'master' of https://github.com/EmersonUrielVargas/AssistantSchool_cliente.git
 		super();
 		this.setBackground(Color.WHITE);
 		this.setSize(350, 420);
+<<<<<<< HEAD
 		initComponent(ac);
+=======
+		initComponent(ac, typeUser);
+>>>>>>> branch 'master' of https://github.com/EmersonUrielVargas/AssistantSchool_cliente.git
 		this.setLayout(new FlowLayout());
 		
 	}
 
+<<<<<<< HEAD
 	private void initComponent(ActionListener ac) {
+=======
+	private void initComponent(ActionListener ac, String typeUser) {
+>>>>>>> branch 'master' of https://github.com/EmersonUrielVargas/AssistantSchool_cliente.git
 		this.setUndecorated(true);
 		this.jTFTopic= new JTFBaseTextField(Constants.BASE_BLUE,Constants.FOURTEEN_BOLD_BASE_FONT, 17);
 		this.jTFTopic.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Constants.DARK_BLUE), "Tema"));
@@ -56,7 +68,12 @@ public class JDialogCommitsNote extends JDialog{
 		this.jPStudent = new JPanel(new FlowLayout());
 		this.jPTeacher.setBorder(BorderFactory.createTitledBorder("DOCENTE"));
 		this.jPStudent.setBorder(BorderFactory.createTitledBorder("ESTUDIANTE"));
-		
+		this.jTFTopic.setEditable(false);
+		if (typeUser.equalsIgnoreCase("teacher")) {
+			initToTeacher();
+		}else {
+			initToStudent();
+		}
 		this.jPTeacher.add(jTFTopic);
 		this.jPTeacher.add(jTFnote);
 		this.jPTeacher.add(jTAachievement);
@@ -83,11 +100,21 @@ public class JDialogCommitsNote extends JDialog{
 	}
 	
 	public void initToTeacher() {
+<<<<<<< HEAD
 		this.jTFTopic.setEditable(true);
 		this.jTFnote.setEditable(true);
 		this.jTAcommentS.setEditable(false);
 		this.jTAachievement.setEditable(true);
 		this.jTAcommentT.setEditable(true);
+=======
+		this.jTFTopic.setEditable(false);
+		this.jTFnote.setEditable(true);
+		this.jTAcommentS.setEditable(false);
+		this.jTAachievement.setEditable(true);
+		this.jTAcommentT.setEditable(true);
+		System.out.println("soy profesor");
+		System.out.println(jTFTopic.isEditable());
+>>>>>>> branch 'master' of https://github.com/EmersonUrielVargas/AssistantSchool_cliente.git
 	}
 	
 	public void initToStudent() {
@@ -96,6 +123,8 @@ public class JDialogCommitsNote extends JDialog{
 		this.jTAcommentS.setEditable(true);
 		this.jTAachievement.setEditable(false);
 		this.jTAcommentT.setEditable(false);
+		System.out.println(jTFTopic.isEditable());
+		System.out.println("soy Estudiante");
 	}
 	
 	public void setPosition(Point point) {

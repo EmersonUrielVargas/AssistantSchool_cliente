@@ -60,7 +60,36 @@ public class ControllerClient implements ActionListener, ItemListener {
 	@Override
 	public void actionPerformed(ActionEvent actionEvent) {
 		switch (Commands.valueOf(actionEvent.getActionCommand())) {
-
+		case AC_SHOW_NOTES_BUTTON:
+			
+			break;
+		case AC_SHOW_COMMENTS_BUTTON:
+			
+			break;
+		case AC_SAVE_COMMENTS_BUTTON:
+			
+			break;
+		case AC_SHOW_REPORT_BUTTON:
+			
+			break;
+		case AC_SHOW_COURSES_BUTTON:
+			
+			break;
+		case AC_SHOW_SUBJECTS_BUTTON:
+			
+			break;
+		case AC_SHOW_LOGOUT_BUTTON:
+			
+			break;
+		case AC_SHOW_REGISTER_BUTTON:
+			
+			break;
+		case SEE_SUBJECTS:
+			
+			break;
+		case SEE_COURSES:
+			
+			break;
 		case C_LOG_IN:
 			writeDatesInitSesion();
 			break;

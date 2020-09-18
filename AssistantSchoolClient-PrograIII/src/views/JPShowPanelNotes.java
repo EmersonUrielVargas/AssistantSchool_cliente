@@ -17,23 +17,35 @@ public class JPShowPanelNotes extends JPanel{
 	private JPNote[] listNotes;
 	private JPNote jPNoteFinal;
 	
-	public JPShowPanelNotes(ControllerClient controller,String namePanel) {
-		super(new FlowLayout());
+	public JPShowPanelNotes(ControllerClient controller,String namePanel,String typeUser) {
+		super(null);
 		this.setSize(900, 60);
 		this.setBackground(Color.WHITE);
 		this.listNotes = new JPNote[7];
-		initComponents(controller, formatTitle(namePanel, 20));
+		initComponents(controller, namePanel, typeUser);
 	}
 
-	private void initComponents(ControllerClient controller, String namePanel) {
+	private void initComponents(ControllerClient controller, String namePanel,String typeUser) {
 		this.jLNamePanel = new JLBaseLabel(namePanel, Constants.FOURTEEN_BOLD_BASE_FONT, Constants.BASE_BLUE);
+<<<<<<< HEAD
+=======
+		this.jLNamePanel.setBounds(10, 5, 170, 60);
+>>>>>>> branch 'master' of https://github.com/EmersonUrielVargas/AssistantSchool_cliente.git
 		this.jPNoteFinal = new JPNote("Nota Final");
 		this.add(jLNamePanel);
+		int positionX = 180;
 		for (int i = 0; i < listNotes.length; i++) {
+<<<<<<< HEAD
 			listNotes[i] = new JPNote(controller, "Student");
 			
+=======
+			listNotes[i] = new JPNote(controller, typeUser);
+			listNotes[i].setBounds(positionX, 15, 90, 40);
+>>>>>>> branch 'master' of https://github.com/EmersonUrielVargas/AssistantSchool_cliente.git
 			this.add(listNotes[i]);
+			positionX+= 95;
 		}
+		this.jPNoteFinal.setBounds(positionX, 0, 90, 60);
 		this.add(jPNoteFinal);
 	}
 	
@@ -41,12 +53,12 @@ public class JPShowPanelNotes extends JPanel{
 		this.jPNoteFinal.setNote(finalNote);
 	}
 	
-	public void initToTeacher(String[] notes) {
+	public void initData(String[] notes) {
 		setEditableNotes(true);
 		String[] noteOk = new String[notes.length ];
 		for (int i = 0; i < notes.length; i++) {
 			noteOk = notes[i].split("&");
-			this.listNotes[i].initToTeacher(noteOk[0], noteOk[1], noteOk[2], noteOk[3], noteOk[4]);
+			this.listNotes[i].initData(noteOk[0], noteOk[1], noteOk[2], noteOk[3], noteOk[4]);
 		}
 	}
 	
@@ -55,29 +67,7 @@ public class JPShowPanelNotes extends JPanel{
 			listNotes[i].setNoteEditable(isEditable);
 		}
 	}
-	
-	public void initToStudent(String[] notes) {
-		setEditableNotes(false);
-		String[] noteOk;
-		for (int i = 0; i < notes.length; i++) {
-			noteOk = notes[i].split("&");
-			this.listNotes[i].initToStudent(noteOk[0], noteOk[1], noteOk[2], noteOk[3], noteOk[4]);
-		}
-	}
-	
-	private String formatTitle(String text,int sizeMax) {
-		String textFormat = text;
-		char[] textTochar = new char[sizeMax-text.length()];
-		if (textTochar.length < sizeMax) {
-			for (int i = 0; i < textTochar.length; i++) {
-				textTochar[i] = " ".charAt(0);
-			}
-		}
-		for (int i = 0; i < textTochar.length; i++) {
-			textFormat = textFormat +textTochar[i];
-		}
-		return textFormat;
-	}
+
 	
 	public String[] getValues() {
 		String[] values = new String[listNotes.length+2];

@@ -1,21 +1,18 @@
 package controller;
 
 public enum Commands {
-	AC_JB_CLEAN,
-	AC_JB_CALCULATE,
-	AC_JB_SEARCH,
-	AC_CB_EARLYER,
-	AC_CB_LOCAL,
-	AC_CB_PUBLIC,
-	AC_MI_HELP,
-	AC_MI_SETTINGS,
 	REMOVE_USER,
-	AC_SEARCH_BY_WORDS,
 	C_LOG_IN,
+<<<<<<< HEAD
 	RETURN_LOG_IN,
 	RETURN_PANEL_1,
 	RETURN_PANEL_2,
 	RETURN_PANEL_4,
+=======
+	AC_SAVE_CHANGES_BUTTON,
+	AC_SEARCH_BY_WORDS,
+	
+>>>>>>> branch 'master' of https://github.com/EmersonUrielVargas/AssistantSchool_cliente.git
 	AC_SHOW_NOTES_BUTTON,
 	AC_SHOW_COMMENTS_BUTTON,
 	AC_SAVE_COMMENTS_BUTTON,
