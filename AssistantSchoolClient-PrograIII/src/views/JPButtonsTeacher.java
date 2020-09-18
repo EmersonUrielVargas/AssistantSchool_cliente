@@ -2,6 +2,7 @@ package views;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -22,30 +23,30 @@ public class JPButtonsTeacher extends JPanel{
 	
 	public JPButtonsTeacher(ControllerClient controller, String[] subjects, String[] courses) {
 		super();
-		this.setSize(1000, 150);
+		this.setLayout(null);
+		this.setPreferredSize(new Dimension(990, 150));
 		this.setBackground(Constants.BASE_BLUE);
 		this.setBorder(BorderFactory.createLineBorder(Color.BLACK, Constants.BORDER_THICKNESS));
-		this.setLayout(new BorderLayout());
 		init(controller, subjects, courses);
 	}
 
 	private void init(ControllerClient controller, String[] subjects, String[] courses) {
-		this.setBorder(BorderFactory.createEmptyBorder(38, 6, 38, 10));
 		this.jpHeadName = new JPHeadName("Jorge Hoyos", "Teacher");
+		this.jpHeadName.setBounds(30, 30, 200, 120);
 		this.add(jpHeadName);
-		this.add(new JLabel("                                                                 "));
+//		this.add(new JLabel("                                                                 "));
 		
 		this.subjectsJCB = new JCBBaseComboBox(controller, subjects, Constants.FONT_LOG_IN, Constants.DARK_BLUE);
-		this.subjectsJCB.setBounds(600, 230, 200, 100);
+		this.subjectsJCB.setBounds(390, 50, 120, 80);
 		this.coursesJCB = new JCBBaseComboBox(controller, courses, Constants.FONT_LOG_IN, Constants.DARK_BLUE);
-		this.coursesJCB.setBounds(600, 230, 300, 50);
+		this.coursesJCB.setBounds(540, 50, 120, 80);
 		this.add(coursesJCB);
 		this.add(subjectsJCB);
 		
-		this.setLayout(new FlowLayout(FlowLayout.CENTER));
 		this.jBShowLogout = new JBBaseButton(Constants.SHOW_LOGOUT_ICON, Constants.SHOW_LOGOUT_ICON_PRESS, controller, Commands.AC_SHOW_LOGOUT_BUTTON);
 		this.jBShowNotes = new JBBaseButton(Constants.SHOW_NOTES_ICON, Constants.SHOW_NOTES_ICON_PRESS, controller, Commands.AC_SHOW_NOTES_BUTTON);
-		
+		this.jBShowNotes.setBounds(690, 30, 120,  120);
+		this.jBShowLogout.setBounds(820, 30, 120,  120);
 		this.add(jBShowNotes);
 		this.add(jBShowLogout);
 		this.setVisible(true);		
@@ -54,14 +55,6 @@ public class JPButtonsTeacher extends JPanel{
 	public void setNameUser(String nameUser) {
 		this.jpHeadName.setNameUser(nameUser);
 	}
-	
-	 public static void main(String[] args) throws FileNotFoundException, IOException {
-		JFrame frame = new JFrame();
-		String[] subjects = {"Calculo", "fisica"};
-		String[] courses = {"Sexto", "septimo", "octavo"};
-		frame.add(new JPButtonsTeacher(new ControllerClient(),subjects, courses));
-		frame.setVisible(true);
-		frame.setSize(1000, 200);
-	}
+
 
 }

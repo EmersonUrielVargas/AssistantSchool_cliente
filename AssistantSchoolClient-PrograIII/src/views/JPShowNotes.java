@@ -1,5 +1,6 @@
 package views;
 
+import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.io.FileNotFoundException;
@@ -12,55 +13,69 @@ import javax.swing.JPanel;
 import controller.ControllerClient;
 
 public class JPShowNotes extends JPanel{
-//	private JBBaseButton jBSaveChanges;
-//	private JPanel jpButton;
 	private ArrayList<JPShowPanelNotes> listNotes;
 	
-	public JPShowNotes(ControllerClient controller) {
-		super(new GridLayout());
-		this.setSize(900, 700);
+	public JPShowNotes(ControllerClient controller,String[] notes,String typeUser) {
+		super();
+		this.setLayout(null);
+		this.setPreferredSize(new Dimension(990,( notes.length*70 +300)));
 		this.listNotes = new ArrayList<JPShowPanelNotes>();
+		initComponents(controller, notes, typeUser);
 		
 	}
 	
-	private void initComponents(ControllerClient controller) {
+	private void initComponents(ControllerClient controller,String[] notes,String typeUser) {
+		if (typeUser.compareToIgnoreCase("Teacher") == 0) {
+			chargeNotesTeacher(controller, notes);
+		}else {
+			chargeNotesStudent(controller, notes);
+		}
+		int positionY = 0;
 		for (int i = 0; i < listNotes.size(); i++) {
+			this.listNotes.get(i).setBounds(0, positionY, 1000,70);
 			this.add(listNotes.get(i));
+			positionY = positionY+70;
 		}
 		
 	}
 
-	public void chargeNotes(ControllerClient controller, String[] notes) {
+	public void chargeNotesTeacher(ControllerClient controller, String[] notes) {
 		String[] notesData;
 		String[] notesLoad;
 		String subject;
 		JPShowPanelNotes jpanelNote;
 		for (int i = 0; i < notes.length; i++) {
-			notesLoad = new String[7];
 			notesData = notes[i].split("/");
+			notesLoad = new String[notesData.length-2];
 			jpanelNote = new JPShowPanelNotes(controller, notesData[0]);
 			jpanelNote.addFinalNote(notesData[1]);
-			for (int j = 0; j < notesLoad.length; j++) {
-				notesLoad[0] = notesData[i+2];
+			for (int j = 2; j < notesData.length; j++) {
+				notesLoad[j-2] = notesData[j];
 			}
-			jpanelNote.addNotes(notesLoad);
+			jpanelNote.initToTeacher(notesLoad);
 			listNotes.add(jpanelNote);
 		}
-		initComponents(controller);
 	}
 	
-	public static void main(String[] args) throws FileNotFoundException, IOException {
-		String[] note = {"calculo/4.5/4.3|logro dividir numeros|el taller estaba incompleto| /3.2|logro dividir numeros|el taller estaba incompleto| /3.5| | | /2.0| | |",
-				"calculo/4.5/4.3|logro dividir numeros|el taller estaba incompleto| /3.2|logro dividir numeros|el taller estaba incompleto| /3.5| | | /2.0| | |"};
-		JFrame frame = new JFrame();
-		JPShowNotes notes = new JPShowNotes(new ControllerClient());
-		notes.chargeNotes(new ControllerClient(), note);
-		frame.setLayout(new FlowLayout());
-		frame.add(notes);
-		frame.setVisible(true);
-		frame.setSize(1000, 800);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	public void chargeNotesStudent(ControllerClient controller, String[] notes) {
+		String[] notesData;
+		String[] notesLoad;
+		String subject;
+		JPShowPanelNotes jpanelNote;
+		for (int i = 0; i < notes.length; i++) {
+			notesData = notes[i].split("/");
+			notesLoad = new String[notesData.length-2];
+			jpanelNote = new JPShowPanelNotes(controller, notesData[0]);
+			jpanelNote.addFinalNote(notesData[1]);
+			for (int j = 2; j < notesData.length; j++) {
+				notesLoad[j-2] = notesData[j];
+			}
+			jpanelNote.initToStudent(notesLoad);
+			listNotes.add(jpanelNote);
+		}
 	}
+	
+
 	
 	
 

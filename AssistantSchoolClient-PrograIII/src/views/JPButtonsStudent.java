@@ -47,12 +47,5 @@ public class JPButtonsStudent extends JPanel{
 	public void setNameUser(String nameUser) {
 		this.jpHeadName.setNameUser(nameUser);
 	}
-	
-	 public static void main(String[] args) throws FileNotFoundException, IOException {
-		JFrame frame = new JFrame();
-		frame.add(new JPButtonsStudent(new ControllerClient()));
-		frame.setVisible(true);
-		frame.setSize(1000, 200);
-	}
 
 }
