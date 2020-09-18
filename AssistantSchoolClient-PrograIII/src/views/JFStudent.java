@@ -33,7 +33,7 @@ public class JFStudent extends JFrame{
 
 	private void initComponents(ControllerClient controller, String[] notes) {
 		this.jpStudent = new JPButtonsStudent(controller); 
-		this.jpShowNotes = new JPShowNotes(controller, notes, "student");
+		this.jpShowNotes = new JPShowNotes(controller, notes, "st");
 		this.jpStudent.setBounds(0, 0, 1000, 150);
         this.jScroll = new JSBaseScroll(jpShowNotes);
         this.jScroll.isVisible(true);

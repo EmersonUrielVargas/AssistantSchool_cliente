@@ -27,15 +27,15 @@ public class JDialogCommitsNote extends JDialog{
 	private JTABase jTAcommentS;
 	private JBBaseButton jBsave;
 	
-	public JDialogCommitsNote(ActionListener ac) {
+	public JDialogCommitsNote(ActionListener ac, String typeUser) {
 		super();
 		this.setSize(350, 420);
-		initComponent(ac);
+		initComponent(ac, typeUser);
 		this.setLayout(new FlowLayout());
 		
 	}
 
-	private void initComponent(ActionListener ac) {
+	private void initComponent(ActionListener ac, String typeUser) {
 		this.setUndecorated(true);
 		this.jTFTopic= new JTFBaseTextField(Constants.BASE_BLUE,Constants.FOURTEEN_BOLD_BASE_FONT, 17);
 		this.jTFTopic.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Constants.DARK_BLUE), "Tema"));
@@ -53,7 +53,12 @@ public class JDialogCommitsNote extends JDialog{
 		this.jPStudent = new JPanel(new FlowLayout());
 		this.jPTeacher.setBorder(BorderFactory.createTitledBorder("DOCENTE"));
 		this.jPStudent.setBorder(BorderFactory.createTitledBorder("ESTUDIANTE"));
-		
+		this.jTFTopic.setEditable(false);
+		if (typeUser.equalsIgnoreCase("teacher")) {
+			initToTeacher();
+		}else {
+			initToStudent();
+		}
 		this.jPTeacher.add(jTFTopic);
 		this.jPTeacher.add(jTFnote);
 		this.jPTeacher.add(jTAachievement);
@@ -80,11 +85,13 @@ public class JDialogCommitsNote extends JDialog{
 	}
 	
 	public void initToTeacher() {
-		this.jTFTopic.setEditable(true);
+		this.jTFTopic.setEditable(false);
 		this.jTFnote.setEditable(true);
 		this.jTAcommentS.setEditable(false);
 		this.jTAachievement.setEditable(true);
 		this.jTAcommentT.setEditable(true);
+		System.out.println("soy profesor");
+		System.out.println(jTFTopic.isEditable());
 	}
 	
 	public void initToStudent() {
@@ -93,6 +100,8 @@ public class JDialogCommitsNote extends JDialog{
 		this.jTAcommentS.setEditable(true);
 		this.jTAachievement.setEditable(false);
 		this.jTAcommentT.setEditable(false);
+		System.out.println(jTFTopic.isEditable());
+		System.out.println("soy Estudiante");
 	}
 	
 	public void setPosition(Point point) {

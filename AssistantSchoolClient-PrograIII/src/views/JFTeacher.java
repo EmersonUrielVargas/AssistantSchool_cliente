@@ -32,10 +32,11 @@ public class JFTeacher extends JFrame{
 	private String[] getTopicsNotes(String[] notes) {
 		String[] topics = new String[7];
 		for (int i = 0; i < notes.length; i++) {
-			for (int j = 0; j < notes[i].split("&").length; j++) {
-				
+			for (int j = 2; j < notes[i].split("/").length; j++) {
+				topics[j-2] = (notes[i].split("/")[j]).split("&")[0];
 			}
 		}
+		return topics;
 	}
 	
 
@@ -43,10 +44,13 @@ public class JFTeacher extends JFrame{
 		this.jpButtonsTeacher = new JPButtonsTeacher(controller, subjects, courses);
 		this.jpShowNotes = new JPShowNotes(controller, notes,"teacher");
 		this.jpButtonsTeacher.setBounds(0, 0, 990, 150);
+		this.jpTopics = new JPTopics(controller, getTopicsNotes(notes));
+		this.jpTopics.setBounds(0, 150, 1000, 60);
         this.jScroll = new JSBaseScroll(jpShowNotes);
         this.jScroll.isVisible(true);
-		this.jScroll.setBounds(0, 150, 995, 580);
+		this.jScroll.setBounds(0, 210, 995, 580);
 		this.add(jpButtonsTeacher);
+		this.add(jpTopics);
 		this.add(jScroll);
 	}
 	
