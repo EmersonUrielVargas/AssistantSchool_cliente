@@ -15,17 +15,21 @@ import controller.ControllerClient;
 public class JPShowNotes extends JPanel{
 	private ArrayList<JPShowPanelNotes> listNotes;
 	
-	public JPShowNotes(ControllerClient controller,String[] notes) {
+	public JPShowNotes(ControllerClient controller,String[] notes,String typeUser) {
 		super();
 		this.setLayout(null);
 		this.setPreferredSize(new Dimension(990,( notes.length*70 +300)));
 		this.listNotes = new ArrayList<JPShowPanelNotes>();
-		chargeNotesStudent(controller, notes);
-		initComponents(controller);
+		initComponents(controller, notes, typeUser);
 		
 	}
 	
-	private void initComponents(ControllerClient controller) {
+	private void initComponents(ControllerClient controller,String[] notes,String typeUser) {
+		if (typeUser.compareToIgnoreCase("Teacher") == 0) {
+			chargeNotesTeacher(controller, notes);
+		}else {
+			chargeNotesStudent(controller, notes);
+		}
 		int positionY = 0;
 		for (int i = 0; i < listNotes.size(); i++) {
 			this.listNotes.get(i).setBounds(0, positionY, 1000,70);

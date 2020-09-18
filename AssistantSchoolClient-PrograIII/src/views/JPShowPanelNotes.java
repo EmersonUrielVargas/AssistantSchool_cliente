@@ -34,19 +34,12 @@ public class JPShowPanelNotes extends JPanel{
 		this.add(jPNoteFinal);
 	}
 	
-	public void addNotes(String[] notes) {
-		String[] noteOk;
-		for (int i = 0; i < notes.length; i++) {
-			noteOk = notes[i].split("&");
-			this.listNotes[i].initToStudent(noteOk[0], noteOk[1], noteOk[2], noteOk[3]);
-		}
-	}
-	
 	public void addFinalNote(String finalNote) {
 		this.jPNoteFinal.setNote(finalNote);
 	}
 	
 	public void initToTeacher(String[] notes) {
+		setEditableNotes(true);
 		String[] noteOk = new String[notes.length ];
 		for (int i = 0; i < notes.length; i++) {
 			noteOk = notes[i].split("&");
@@ -54,7 +47,14 @@ public class JPShowPanelNotes extends JPanel{
 		}
 	}
 	
+	private void setEditableNotes(boolean isEditable) {
+		for (int i = 0; i < listNotes.length; i++) {
+			listNotes[i].setNoteEditable(isEditable);
+		}
+	}
+	
 	public void initToStudent(String[] notes) {
+		setEditableNotes(false);
 		String[] noteOk;
 		for (int i = 0; i < notes.length; i++) {
 			noteOk = notes[i].split("&");
