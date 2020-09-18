@@ -16,7 +16,7 @@ public class JPCoursesAndSubjects extends JPanel {
 
 	private JBBaseButton createCourseJB, createSubjectJB, askCourseJB, asigSubjecJB,
 	asigCourseJB;
-	private JCBBaseComboBox subjectsJCB, coursesJCB;
+	private JCBBaseComboBox subjectsJCB, coursesJCB,subjects2JCB;
 
 	public JPCoursesAndSubjects(ControllerClient controller, String[] subjects, String[] courses) {
 		this.setBackground(Color.WHITE);
@@ -43,9 +43,14 @@ public class JPCoursesAndSubjects extends JPanel {
 		add(subjectsJCB);
 		
 		coursesJCB = new JCBBaseComboBox(controller, courses, Constants.FONT_LOG_IN, Constants.DARK_BLUE);
-		coursesJCB.setBounds(200, 230,300, 50);
-		coursesJCB.setBorder(BorderFactory.createTitledBorder("Cursos de la Institución"));
+		coursesJCB.setBounds(200, 200,300, 50);
+		coursesJCB.setBorder(BorderFactory.createTitledBorder("Cursos a buscar"));
 		add(coursesJCB);
+		
+		subjects2JCB = new JCBBaseComboBox(controller, subjects, Constants.FONT_LOG_IN, Constants.DARK_BLUE);
+		subjects2JCB.setBounds(200, 270,300, 50);
+		subjects2JCB.setBorder(BorderFactory.createTitledBorder("Asignatura a buscar"));
+		add(subjects2JCB);
 		
 		askCourseJB = new JBBaseButton(Constants.ROUTE_SEE_COURSE, Constants.ROUTE_SEE_COURSE_PRESS, controller,
 				Commands.SEE_COURSES);
@@ -71,5 +76,9 @@ public class JPCoursesAndSubjects extends JPanel {
 		frame.setVisible(true);
 		frame.setSize(1000, 500);
 	}
+	 
+	 public String getDatesCourses() {
+		 return subjects2JCB.getSelectedItem() + "#" + coursesJCB.getSelectedItem();
+	 }
 	
 }

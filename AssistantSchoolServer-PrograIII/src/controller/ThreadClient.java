@@ -138,6 +138,14 @@ public class ThreadClient extends Thread {
 					manager.resetStrings();
 					
 					break;
+				case 14:
+					String dates = input.readUTF();
+					String[] notes = dates.split("#");
+					System.out.println(notes[0]);
+					Course course1 = manager.askCourse(new Course(notes[1]));
+					Subject subject1 =  manager.askSubject(new Subject(Integer.parseInt(notes[0].split("_")[1]), ""));
+					output.writeUTF(manager.getStudentsToCourse(course1, subject1));
+					manager.resetStrings();
 				}
 
 			}

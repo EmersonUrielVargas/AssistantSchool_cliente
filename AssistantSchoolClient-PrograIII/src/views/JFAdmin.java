@@ -89,6 +89,10 @@ public class JFAdmin extends JFrame {
 		this.imagePanelJP.setVisible(false);
 		seeTeachersJP.setPreferredSize(new Dimension(1000, (strings.length * 501) + 50));
 	}
+	
+	public String getDatesAskCourse() {
+		return coursesSubjectsJP.getDatesCourses();
+	}
 
 	public static void main(String[] args) throws FileNotFoundException, IOException {
 		new JFAdmin(new ControllerClient());

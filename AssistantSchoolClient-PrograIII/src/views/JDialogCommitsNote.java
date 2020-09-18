@@ -2,8 +2,9 @@ package views;
 
 import java.awt.Dimension;
 import java.awt.FlowLayout;
-import java.awt.GridLayout;
 import java.awt.Point;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 
 import javax.swing.BorderFactory;
 import javax.swing.JDialog;
@@ -26,7 +27,7 @@ public class JDialogCommitsNote extends JDialog{
 		this.setSize(350, 380);
 		initComponent(controller);
 		this.setLayout(new FlowLayout());
-		
+//		this.setVisible(true);
 	}
 
 	private void initComponent(ControllerClient controller) {
@@ -74,6 +75,10 @@ public class JDialogCommitsNote extends JDialog{
 	
 	public void setPosition(Point point) {
 		this.setPosition(point);
+	}
+	
+	public static void main(String[] args) throws FileNotFoundException, IOException {
+		new JDialogCommitsNote(new ControllerClient());
 	}
 
 }

@@ -20,7 +20,9 @@ import views.JDLogin;
 import views.JDRegisterCourse;
 import views.JDRegisterSubject;
 import views.JDRegisterUser;
+import views.JDSeeStudentsCoursesSubject;
 import views.JFAdmin;
+import views.JFTeacher;
 
 public class ControllerClient implements ActionListener, ItemListener {
 
@@ -32,11 +34,13 @@ public class ControllerClient implements ActionListener, ItemListener {
 
 	private JDLogin loginJD;
 	private JFAdmin adminJF;
+	private JDSeeStudentsCoursesSubject seeCourses;
 	private JDRegisterUser registerUserJD;
 	private JDRegisterCourse registerCourseJD;
 	private JDRegisterSubject registerSubjectJD;
 	private JDAsigCourse asigCourseJD;
 	private JDAsigSubject asigSubjectJD;
+	private JFTeacher teacherJF;
 
 	public ControllerClient() throws FileNotFoundException, IOException {
 //		socket = new Socket(HOST, PORT);
@@ -44,7 +48,7 @@ public class ControllerClient implements ActionListener, ItemListener {
 //		input = new DataInputStream(socket.getInputStream());
 //		initLogin();
 	}
-
+	
 	public void initLogin() {
 		String[] users = { "Admin", "Docente", "Estudiante" };
 		loginJD = new JDLogin(this, users);
@@ -215,7 +219,21 @@ public class ControllerClient implements ActionListener, ItemListener {
 			asigCourseJD.setVisible(false);
 			adminJF.setVisible(true);
 			break;
+		case SEE_COURSES:
+			try {
+				output.writeInt(14);
+				output.writeUTF(adminJF.getDatesAskCourse());
+				String datas  = input.readUTF();
+				System.out.println(datas);
+				seeCourses = new JDSeeStudentsCoursesSubject(this, datas.split(","), "Estudiante");
+				break;
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
 		}
+		
 	}
 
 	private void coursesAndSubjects() {
@@ -315,7 +333,7 @@ public class ControllerClient implements ActionListener, ItemListener {
 				} else if (datas[2].equals("Estudiante")) {
 
 				} else if (datas[2].equals("Docente")) {
-
+					teacherJF = new JFTeacher(this, notes, subjects, courses);
 				}
 			} else {
 				loginJD.incorrectLogin();

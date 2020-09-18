@@ -20,7 +20,8 @@ public class Manager {
 	private String subjectsString;
 	private String coursesString;
 	private String teachersString;
-//	private String studentsString;
+	private String studentsString;
+	private String partialNotesString;
 
 	public Manager() {
 		users = new AVLTree<User>(new ComparatorByUsers());
@@ -31,6 +32,8 @@ public class Manager {
 		coursesString = "";
 		subjectsString = "";
 		teachersString = "";
+		studentsString = "";
+		partialNotesString = "";
 		createAdmin();
 		createSubjects();
 	}
@@ -43,8 +46,11 @@ public class Manager {
 		boolean result = false;
 		User userAux = new User(nickName, password);
 		boolean exist = users.exist(userAux, users.getRoot());
-		if (exist == true && userAux.getPassword().equals(password)) {
-			result = true;
+		if (exist == true) {
+			User user = users.ask(userAux, users.getRoot()).getData();
+			if(user.getPassword().equals(password)){
+				result = true;
+			}
 		}
 
 		return result;
@@ -71,12 +77,12 @@ public class Manager {
 	public Subject askSubject(Subject subject) {
 		return subjects.ask(subject, subjects.getRoot()).getData();
 	}
-	
-	public void asigSubjectToTeacher(Subject subject,Teacher teacher) {
+
+	public void asigSubjectToTeacher(Subject subject, Teacher teacher) {
 		teacher.addSubject(subject);
 	}
-	
-	public void asigCourseToTeacher(Course course , Teacher teacher) {
+
+	public void asigCourseToTeacher(Course course, Teacher teacher) {
 		course.reeplaceCourseDirector(teacher);
 	}
 
@@ -99,7 +105,7 @@ public class Manager {
 		teachers.insert(teacher);
 		users.insert(new User(teacher, TypeUser.TEACHER));
 	}
-	
+
 	public User askUser(User user) {
 		return users.ask(user, users.getRoot()).getData();
 	}
@@ -124,24 +130,22 @@ public class Manager {
 	public void addPartialNote(PartialNote partialNote, Student student, int subjectId) {
 		student.addPartialNote(partialNote, subjectId);
 	}
-	
+
 	public void addCourse(Course course) {
 		courses.insert(course);
 	}
-
 
 	public void modifyPartialNote(int subjectId, String topic, double value, String notation, Student student) {
 		Student studentAux = students.ask(student, students.getRoot()).getData();
 		FinalNote auxiliar = studentAux.askFinalNote(subjectId);
 		auxiliar.modifyPartialNote(topic, value, notation);
 	}
-	
+
 	public Course askCourse(Course course) {
 		return courses.ask(course, courses.getRoot()).getData();
 	}
 
-
-	public PartialNote askPartialNote(String topic,int subjectId, Student student) {
+	public PartialNote askPartialNote(String topic, int subjectId, Student student) {
 		Student studentAux = students.ask(student, students.getRoot()).getData();
 		FinalNote auxiliar = studentAux.askFinalNote(subjectId);
 		return auxiliar.askPartialNote(topic);
@@ -236,6 +240,18 @@ public class Manager {
 		t1.addSubject(calculus);
 		t1.addSubject(algebra);
 		teachers.insert(t1);
+		Course course = new Course("Segundo");
+		addCourse(course);
+		Subject subject = new Subject(100, "Programacion");
+		FinalNote fn = new FinalNote(subject.getSubjectCode());
+		PartialNote pn = new PartialNote("La luna", 4.6, "Desarrolla correctamente");
+		PartialNote pn2 = new PartialNote("El sol", 4.0, "Desarrolla correctamente");
+		addSubject(subject);
+		Student s1 = new Student("Pedro", "Fernandez", TypeId.CC, 1234, "Once");
+		s1.addFinalNote(fn);
+		fn.addPartialNote(pn);
+		fn.addPartialNote(pn2);
+		addStudent(s1);
 
 	}
 
@@ -259,13 +275,13 @@ public class Manager {
 		if (auxiliar != null) {
 			convertTeachersToString(auxiliar.getLeft());
 			teachersString += "," + ((auxiliar.getData().getName() + " " + auxiliar.getData().getLastName() + "-"
-					+ auxiliar.getData().getTypeId() + " " + auxiliar.getData().getNumberId())
-					+ ","+ auxiliar.getData().getSubjectsString());
+					+ auxiliar.getData().getTypeId() + " " + auxiliar.getData().getNumberId()) + ","
+					+ auxiliar.getData().getSubjectsString());
 			auxiliar.getData().resetSubjectsString();
 			convertTeachersToString(auxiliar.getRigth());
 		}
 	}
-	
+
 	private void convertTeachersToStringOutSubjects(NodeAVL<Teacher> auxiliar) {
 		if (auxiliar != null) {
 			convertTeachersToStringOutSubjects(auxiliar.getLeft());
@@ -278,37 +294,75 @@ public class Manager {
 		convertTeachersToString(teachers.getRoot());
 		return teachersString;
 	}
-	
+
 	public String getTeachersStringOutSubjects() {
 		teachersString = "";
 		this.convertTeachersToStringOutSubjects(teachers.getRoot());
 		return teachersString;
 	}
-	
+
 	public void resetStrings() {
-		this.coursesString="";
-		this.subjectsString="";
-		this.teachersString="";
+		this.coursesString = "";
+		this.subjectsString = "";
+		this.teachersString = "";
+		studentsString = "";
+		partialNotesString = "";
 	}
-	
-	public void addStudentsToCourse(Course course) {
-		studentsToCourse(students.getRoot(),course);
+
+	public String getStudentsToCourse(Course course,Subject subject) {
+		this.studentsToCourse(students.getRoot(), course, subject);
+		return studentsString;
 	}
-	
-	private void studentsToCourse(NodeAVL<Student> auxiliar,Course course) {
+
+	private void studentsToCourse(NodeAVL<Student> auxiliar, Course course, Subject subject) {
 		if (auxiliar != null) {
-			studentsToCourse(auxiliar.getLeft(),course);
-			if(auxiliar.getData().getNameCourse().equals(course.getNameCourse())){
-				course.addStudent(auxiliar.getData());
+			studentsToCourse(auxiliar.getLeft(), course, subject);
+			if (auxiliar.getData().getNameCourse().equals(course.getNameCourse())
+					&& auxiliar.getData().askFinalNote(subject.getSubjectCode()) != null) {
+				Student aux = auxiliar.getData();
+				FinalNote auxFn = aux.askFinalNote(subject.getSubjectCode());
+				studentsString += aux.getName() + aux.getLastName() + "_" + aux.getNumberId() + "/" + auxFn.getValue()
+						+ "/" + this.getPartialNotesString(aux, subject) + ",";
 			}
-			studentsToCourse(auxiliar.getRigth(),course);
+			studentsToCourse(auxiliar.getRigth(), course, subject);
+		}
+	}
+
+	private AVLTree<PartialNote> getPartialNotes(Student student, Subject subject) {
+		FinalNote auxF = student.askFinalNote(subject.getSubjectCode());
+		return auxF.getPartialNotes();
+	}
+
+	private void partialNotesStudentToString(NodeAVL<PartialNote> auxiliar) {
+		if (auxiliar != null) {
+			partialNotesStudentToString(auxiliar.getLeft());
+			PartialNote auxP = auxiliar.getData();
+			partialNotesString+= auxP.getValue()+"&"+auxP.getArchivement()+"&"+auxP.getComment()+"&"+auxP.getComment()+"/";
+			partialNotesStudentToString(auxiliar.getRigth());
 		}
 	}
 	
+	public String getPartialNotesString(Student student,Subject subject) {
+		this.partialNotesStudentToString(this.getPartialNotes(student, subject).getRoot());
+		return partialNotesString;
+	}
 
 	public static void main(String[] args) {
 		Manager ma = new Manager();
-		System.out.println(ma.getCoursesString());
+		Course course = new Course("Once");
+		ma.addCourse(course);
+		Subject subject = new Subject(100, "Educacion Fisica");
+		FinalNote fn = new FinalNote(subject.getSubjectCode());
+		PartialNote pn = new PartialNote("La luna", 4.6, "Desarrolla correctamente");
+		PartialNote pn2 = new PartialNote("El sol", 4.0, "Desarrolla correctamente");
+		ma.addSubject(subject);
+		Student s1 = new Student("Pedro", "Fernandez", TypeId.CC, 1234, "Once");
+		s1.addFinalNote(fn);
+		fn.addPartialNote(pn);
+		fn.addPartialNote(pn2);
+		ma.addStudent(s1);
+//		System.out.println(s1.getFinalNotes().ask(fn, s1.getFinalNotes().getRoot()).getData().getSubject());
+//		System.out.println(ma.getStudentsToCourse(course, subject));
 	}
 
 }

@@ -2,6 +2,9 @@ package structures;
 
 import java.util.Comparator;
 
+import comparators.ComparatorByString;
+import models.PartialNote;
+
 public class AVLTree<T> {
 
 	private NodeAVL<T> root;
@@ -52,7 +55,7 @@ public class AVLTree<T> {
 			return ask(data, node.getRigth());
 		}
 	}
-	
+
 	public boolean exist(T data, NodeAVL<T> node) {
 
 		if (node == null) {
@@ -127,8 +130,8 @@ public class AVLTree<T> {
 	}
 
 	public void delete(T data) {
-		if(this.exist(data,root)==true) {
-		root = delete(root, data);
+		if (this.exist(data, root) == true) {
+			root = delete(root, data);
 		}
 	}
 
@@ -199,6 +202,20 @@ public class AVLTree<T> {
 
 	public NodeAVL<T> getRoot() {
 		return root;
+	}
+
+	private void show(NodeAVL<T> auxiliar) {
+		if (auxiliar != null) {
+			show(auxiliar.getLeft());
+			System.out.println(auxiliar.getData());
+			show(auxiliar.getRigth());
+		}
+	}
+
+	public static void main(String[] args) {
+		AVLTree<String> strings = new AVLTree<>(new ComparatorByString());
+		strings.insert("Hola");
+		strings.show(strings.getRoot());
 	}
 
 }

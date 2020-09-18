@@ -14,10 +14,15 @@ public class Student extends Person {
 		this.nameCourse = nameCourse;
 		finalNotes = new AVLTree<>(new ComparatorByFinalNoteStudent());
 	}
-
+	
 	public void addPartialNote(PartialNote partialNote,int subjectId) {
+		System.out.println(subjectId);
 		FinalNote auxiliar = this.askFinalNote(subjectId);
 		auxiliar.addPartialNote(partialNote);
+	}
+	
+	public void addFinalNote(FinalNote fn) {
+		finalNotes.insert(fn);
 	}
 
 	public void modifyPartialNote(int subjectId, String topic, double value, String notation) {
@@ -44,6 +49,8 @@ public class Student extends Person {
 	public String getNameCourse() {
 		return nameCourse;
 	}
+	
+	
 
 
 

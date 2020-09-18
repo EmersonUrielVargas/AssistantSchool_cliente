@@ -86,6 +86,7 @@ public class JPNote extends JPanel{
 	public void initToStudent(String valuenote, String achievement, String commentTeacher, String commentStudent) {
 		this.jtNote.setText(valuenote);
 		this.jdcommentN.initToStudent(achievement, commentTeacher, commentStudent);
+		this.setVisible(true);
 	}
 	
 	

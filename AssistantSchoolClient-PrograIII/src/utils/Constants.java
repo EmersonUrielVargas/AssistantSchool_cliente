@@ -15,7 +15,7 @@ public class Constants {
 
 	public static final String INIT_SESION = "/images/Init_Sesion.png";
 	public static final String INIT_SESION_PRESS = "/images/Init_Sesion_Press.png";
-	public static final String ERROR_USER = "El Usuario no ha sido encontrado";
+	public static final String ERROR_USER = "Usuario o Contraseña Incorrectos";
 	public static final String TEXT_TYPE_USER = "Seleccione el tipo de usuario";
 	public static final Font FONT_LOG_IN = new Font("Bahnschrift", Font.PLAIN, 20);
 	public final static String[] TYPE_USERS = { "Admin", "Docente", "Estudiante" };
