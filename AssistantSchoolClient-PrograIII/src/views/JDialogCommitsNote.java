@@ -2,8 +2,11 @@ package views;
 
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.Frame;
 import java.awt.GridLayout;
 import java.awt.Point;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 
 import javax.swing.BorderFactory;
 import javax.swing.JDialog;
@@ -16,6 +19,8 @@ import utils.Constants;
 public class JDialogCommitsNote extends JDialog{
 	private JPanel jPTeacher;
 	private JPanel jPStudent;
+	private JTFBaseTextField jTFTopic;
+	private JTFBaseTextField jTFnote;
 	private JTABase jTAachievement;
 	private JTABase jTAcommentT;
 	private JTABase jTAcommentS;
@@ -23,7 +28,7 @@ public class JDialogCommitsNote extends JDialog{
 	
 	public JDialogCommitsNote(ControllerClient controller) {
 		super();
-		this.setSize(350, 380);
+		this.setSize(350, 420);
 		initComponent(controller);
 		this.setLayout(new FlowLayout());
 		
@@ -31,6 +36,10 @@ public class JDialogCommitsNote extends JDialog{
 
 	private void initComponent(ControllerClient controller) {
 		this.setUndecorated(true);
+		this.jTFTopic= new JTFBaseTextField(Constants.BASE_BLUE,Constants.FOURTEEN_BOLD_BASE_FONT, 17);
+		this.jTFTopic.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Constants.DARK_BLUE), "Tema"));
+		this.jTFnote = new JTFBaseTextField(Constants.BASE_BLUE,Constants.FOURTEEN_BOLD_BASE_FONT, 7);
+		this.jTFnote.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Constants.DARK_BLUE), "Nota"));
 		this.jTAachievement = new JTABase(Constants.FOURTEEN_BOLD_BASE_FONT, Constants.BASE_BLUE, 320, 100);
 		this.jTAachievement.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Constants.DARK_BLUE), "Logros"));
 		this.jTAcommentT = new JTABase(Constants.FOURTEEN_BOLD_BASE_FONT, Constants.BASE_BLUE, 320, 60);
@@ -39,11 +48,13 @@ public class JDialogCommitsNote extends JDialog{
 		this.jTAcommentS.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Constants.DARK_BLUE), "Comentario"));
 		this.jBsave = new JBBaseButton(Constants.SAVE_COMMENTS_ICON, Constants.SAVE_COMMENTS_ICON_PRESS, controller, Commands.AC_SAVE_COMMENTS_BUTTON);
 		this.jPTeacher = new JPanel(new FlowLayout());
-		this.jPTeacher.setPreferredSize(new Dimension(330, 200));
+		this.jPTeacher.setPreferredSize(new Dimension(330, 250));
 		this.jPStudent = new JPanel(new FlowLayout());
 		this.jPTeacher.setBorder(BorderFactory.createTitledBorder("DOCENTE"));
 		this.jPStudent.setBorder(BorderFactory.createTitledBorder("ESTUDIANTE"));
 		
+		this.jPTeacher.add(jTFTopic);
+		this.jPTeacher.add(jTFnote);
 		this.jPTeacher.add(jTAachievement);
 		this.jPTeacher.add(jTAcommentT);
 		this.jPStudent.add(jTAcommentS);
@@ -54,19 +65,27 @@ public class JDialogCommitsNote extends JDialog{
 		this.setVisible(false);
 	}
 	
-	public void initToTeacher(String achievement, String commentTeacher, String commentStudent) {
+	public void initToTeacher(String topic, String note, String achievement, String commentTeacher, String commentStudent) {
+		this.jTFTopic.setText(topic);
+		this.jTFnote.setText(note);
 		this.jTAachievement.setText(achievement);
 		this.jTAcommentT.setText(commentTeacher);
 		this.jTAcommentT.setText(commentTeacher);
+		this.jTFTopic.setEditable(true);
+		this.jTFnote.setEditable(true);
 		this.jTAcommentS.setEditable(false);
 		this.jTAachievement.setEditable(true);
 		this.jTAcommentT.setEditable(true);
 	}
 	
-	public void initToStudent(String achievement, String commentTeacher, String commentStudent) {
+	public void initToStudent(String topic, String note,String achievement, String commentTeacher, String commentStudent) {
+		this.jTFTopic.setText(topic);
+		this.jTFnote.setText(note);
 		this.jTAachievement.setText(achievement);
 		this.jTAcommentT.setText(commentTeacher);
 		this.jTAcommentT.setText(commentTeacher);
+		this.jTFTopic.setEditable(false);
+		this.jTFnote.setEditable(false);
 		this.jTAcommentS.setEditable(true);
 		this.jTAachievement.setEditable(false);
 		this.jTAcommentT.setEditable(false);
@@ -75,5 +94,15 @@ public class JDialogCommitsNote extends JDialog{
 	public void setPosition(Point point) {
 		this.setPosition(point);
 	}
+	public String[] getValues() {
+		String[] values = new String[5];
+		values[0] = this.jTFTopic.getText();
+		values[1] = this.jTFnote.getText();
+		values[2] = this.jTAachievement.getText();
+		values[3] = this.jTAcommentT.getText();
+		values[4] = this.jTAcommentS.getText();
+		return values;
+	}
+	
 
 }

@@ -40,6 +40,14 @@ public class JFTeacher extends JFrame{
 		this.add(jScroll);
 	}
 	
+	public String getValues() {
+		String values = "";
+		for (int i = 0; i < this.jpShowNotes.getValues().length; i++) {
+			values = values + this.jpShowNotes.getValues()[i] + "%";
+		}
+		return values;
+	}
+	
 	
 	
 	public static void main(String[] args) throws FileNotFoundException, IOException {

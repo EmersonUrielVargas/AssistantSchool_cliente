@@ -14,6 +14,7 @@ public class FinalNote {
 		super();
 		this.subjectId = subjectId;
 		partialNotes = new AVLTree<>(new ComparatorByPartialNote());
+		
 	}
 
 	private void calculateFinalNote(NodeAVL<PartialNote> auxiliar) {

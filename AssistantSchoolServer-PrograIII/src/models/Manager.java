@@ -266,6 +266,21 @@ public class Manager {
 		}
 	}
 	
+	private void getStudentNotesString(NodeAVL<PartialNote> auxiliar, String notes) {
+		if (auxiliar != null) {
+			getStudentNotesString(auxiliar.getLeft(), notes);
+			notes = auxiliar.getData().getValue()
+			auxiliar.getData().resetSubjectsString();
+			convertTeachersToString(auxiliar.getRigth());
+		}
+	}
+	
+	private String getNotesStudent(int studentID) {
+		Student student = askStudent(new Student("","",null,studentID,""));
+		student.getFinalNotes().
+		
+	}
+	
 	private void convertTeachersToStringOutSubjects(NodeAVL<Teacher> auxiliar) {
 		if (auxiliar != null) {
 			convertTeachersToStringOutSubjects(auxiliar.getLeft());

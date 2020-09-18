@@ -43,7 +43,7 @@ public class JPShowPanelNotes extends JPanel{
 		String[] noteOk = new String[notes.length ];
 		for (int i = 0; i < notes.length; i++) {
 			noteOk = notes[i].split("&");
-			this.listNotes[i].initToTeacher(noteOk[0], noteOk[1], noteOk[2], noteOk[3]);
+			this.listNotes[i].initToTeacher(noteOk[0], noteOk[1], noteOk[2], noteOk[3], noteOk[4]);
 		}
 	}
 	
@@ -58,7 +58,7 @@ public class JPShowPanelNotes extends JPanel{
 		String[] noteOk;
 		for (int i = 0; i < notes.length; i++) {
 			noteOk = notes[i].split("&");
-			this.listNotes[i].initToStudent(noteOk[0], noteOk[1], noteOk[2], noteOk[3]);
+			this.listNotes[i].initToStudent(noteOk[0], noteOk[1], noteOk[2], noteOk[3], noteOk[4]);
 		}
 	}
 	
@@ -74,6 +74,18 @@ public class JPShowPanelNotes extends JPanel{
 			textFormat = textFormat +textTochar[i];
 		}
 		return textFormat;
+	}
+	
+	public String[] getValues() {
+		String[] values = new String[listNotes.length+2];
+		values[0] = this.jLNamePanel.getText();
+		values[1] = this.jPNoteFinal.getValueNote();
+		for (int i = 2; i < values.length; i++) {
+			for (int j = 0; j < listNotes[i-2].getValues().length; j++) {
+				values[i] = values[i]+ listNotes[i-2].getValues()[j]+"&";
+			}
+		}
+		return values;
 	}
 	
 	

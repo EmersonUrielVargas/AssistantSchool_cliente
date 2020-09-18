@@ -75,6 +75,16 @@ public class JPShowNotes extends JPanel{
 		}
 	}
 	
+	public String[] getValues() {
+		String[] values = new String[listNotes.size()];
+		for (int i = 0; i < values.length; i++) {
+			for (int j = 0; j < listNotes.get(i).getValues().length; j++) {
+				values[i] = values[i]+ listNotes.get(i).getValues()[j]+"/";
+			}
+		}
+		return values;
+	}
+	
 
 	
 	

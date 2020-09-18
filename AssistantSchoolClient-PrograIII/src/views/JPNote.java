@@ -78,14 +78,22 @@ public class JPNote extends JPanel{
 		this.jtNote.setEditable(isEditable);
 	}
 	
-	public void initToTeacher(String valuenote, String achievement, String commentTeacher, String commentStudent) {
-		this.jtNote.setText(valuenote);
-		this.jdcommentN.initToTeacher(achievement, commentTeacher, commentStudent);
+	public void initToTeacher(String topic,String valuenote, String achievement, String commentTeacher, String commentStudent) {
+		this.jdcommentN.initToTeacher(topic, valuenote, achievement, commentTeacher, commentStudent);
+		this.jtNote.setText(this.jdcommentN.getValues()[1]);
 	}
 	
-	public void initToStudent(String valuenote, String achievement, String commentTeacher, String commentStudent) {
-		this.jtNote.setText(valuenote);
-		this.jdcommentN.initToStudent(achievement, commentTeacher, commentStudent);
+	public void initToStudent(String topic,String valuenote, String achievement, String commentTeacher, String commentStudent) {
+		this.jdcommentN.initToStudent(topic, valuenote, achievement, commentTeacher, commentStudent);
+		this.jtNote.setText(this.jdcommentN.getValues()[1]);
+	}
+	
+	public String[] getValues() {
+		return this.jdcommentN.getValues();
+	}
+	
+	public String getValueNote() {
+		return this.jtNote.getText();
 	}
 	
 	
