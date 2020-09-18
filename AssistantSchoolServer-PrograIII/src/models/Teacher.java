@@ -41,6 +41,11 @@ public class Teacher extends Person{
 		return this.getName() +"" + this.getLastName() + "-" + this.getTypeId() + "_" + this.getNumberId();
 	}
 	
+	public String seeTeacher() {
+		return "El profesor con el codigo ingresado es :" + this.getName() +"" + this.getLastName() + "-" + this.getTypeId() + "_" + this.getNumberId() ;
+
+	}
+	
 	public String toStringSubjects() {
 		convertSubjectsToString(subjects.getRoot());
 		return subjectsString;

@@ -16,6 +16,7 @@ import javax.swing.JOptionPane;
 import utils.Constants;
 import views.JDAsigCourse;
 import views.JDAsigSubject;
+import views.JDAsigSubjectCourse;
 import views.JDLogin;
 import views.JDRegisterCourse;
 import views.JDRegisterSubject;
@@ -40,13 +41,14 @@ public class ControllerClient implements ActionListener, ItemListener {
 	private JDRegisterSubject registerSubjectJD;
 	private JDAsigCourse asigCourseJD;
 	private JDAsigSubject asigSubjectJD;
+	private JDAsigSubjectCourse subjectCourseJD;
 	private JFTeacher teacherJF;
 
 	public ControllerClient() throws FileNotFoundException, IOException {
-//		socket = new Socket(HOST, PORT);
-//		output = new DataOutputStream(socket.getOutputStream());
-//		input = new DataInputStream(socket.getInputStream());
-//		initLogin();
+		socket = new Socket(HOST, PORT);
+		output = new DataOutputStream(socket.getOutputStream());
+		input = new DataInputStream(socket.getInputStream());
+		initLogin();
 	}
 	
 	public void initLogin() {
@@ -108,7 +110,12 @@ public class ControllerClient implements ActionListener, ItemListener {
 				for (int i = 0; i < teachers.length; i++) {
 					teachers[i] = input.readUTF();
 				}
-				registerCourseJD = new JDRegisterCourse(this, teachers);
+				int auxiliarS = input.readInt();
+				String[] subjects = new String[auxiliarS];
+				for (int i = 0; i < subjects.length; i++) {
+					subjects[i] = input.readUTF();
+				}
+				registerCourseJD = new JDRegisterCourse(this, teachers,subjects);
 				break;
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
@@ -219,6 +226,10 @@ public class ControllerClient implements ActionListener, ItemListener {
 			asigCourseJD.setVisible(false);
 			adminJF.setVisible(true);
 			break;
+		case RETURN_PANEL_4:
+			registerUserJD.setVisible(false);
+			adminJF.setVisible(true);
+			break;
 		case SEE_COURSES:
 			try {
 				output.writeInt(14);
@@ -231,14 +242,53 @@ public class ControllerClient implements ActionListener, ItemListener {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+			break;
 			
+		case ASIG_SUBJECT_TO_COURSE:
+			try {
+				output.writeInt(15);
+				int auxiliarT = input.readInt();
+				String[] courses = new String[auxiliarT];
+				for (int i = 0; i < courses.length; i++) {
+					courses[i] = input.readUTF();
+				}
+				
+				int auxiliarS = input.readInt();
+				String[]subjects = new String[auxiliarS];
+				for (int i = 0; i < subjects.length; i++) {
+					subjects[i] = input.readUTF();
+				}	
+				adminJF.setVisible(false);
+				subjectCourseJD = new JDAsigSubjectCourse(this, subjects, courses);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			break;
+			
+		case ADD_SUBJECT_TO_COURSE:
+			try {
+				output.writeInt(16);
+				output.writeUTF(subjectCourseJD.getDatesUser());
+				JOptionPane.showMessageDialog(null, "Asignacion ingresada correctamente");
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			adminJF.setVisible(true);
+			break;
+			
+		case RETURN_PANEL_3:
+			adminJF.setVisible(true);
+			subjectCourseJD.setVisible(false);
+			break;
+
 		}
 		
 	}
 
 	private void coursesAndSubjects() {
 		try {
-			output.writeInt(6);
+			output.writeInt(15);
 			int auxiliarS = input.readInt();
 			String[] subjects = new String[auxiliarS];
 			for (int i = 0; i < auxiliarS; i++) {
@@ -251,7 +301,7 @@ public class ControllerClient implements ActionListener, ItemListener {
 			}
 			adminJF.setVisible(false);
 			adminJF = new JFAdmin(this);
-			adminJF.initPanelCourses(this, subjects, courses);
+			adminJF.initPanelCourses(this, courses, subjects);
 			adminJF.setVisible(true);
 
 		} catch (IOException e) {
@@ -299,6 +349,8 @@ public class ControllerClient implements ActionListener, ItemListener {
 				JOptionPane.showMessageDialog(null, "No hay datos que mostrar");
 				adminJF.isVisibleImagen(true);
 				adminJF.isVisiblePanelTeachers(false);
+				adminJF = new JFAdmin(this);
+				adminJF.setVisible(true);
 			} else {
 				for (int i = 0; i < quantityDates; i++) {
 					teachers.add(input.readUTF());
@@ -333,7 +385,7 @@ public class ControllerClient implements ActionListener, ItemListener {
 				} else if (datas[2].equals("Estudiante")) {
 
 				} else if (datas[2].equals("Docente")) {
-					teacherJF = new JFTeacher(this, notes, subjects, courses);
+//					teacherJF = new JFTeacher(this, notes, subjects, courses);
 				}
 			} else {
 				loginJD.incorrectLogin();

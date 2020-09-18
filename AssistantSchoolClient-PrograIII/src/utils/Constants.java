@@ -4,14 +4,39 @@ import java.awt.Color;
 import java.awt.Font;
 
 public class Constants {
-
 	// Constantes Generales del Frame
 	public static final String ICON = "/images/Icon.png";
-	public static final String[] HEADERS_SUBJECT = {"Nombre de Asignatura","Logros","Nota Final"};
 
 	// Init Of Session
 	public static final String INIT_SESION_IMAGEN = "/images/Init_Session_Imagen.png";
+
+
+
+
+//Constants of JDialogLogin Class-----------------------------------------------
+
+
+
+
+	
+	
+//Constants of Jbuttons student-----------------------------------------------
+	
+	
+		
+		public static final String SAVE_CHANGES_ICON = "/images/SAVE_CHANGES_ICON.png";
+		public static final String SAVE_CHANGES_ICON_PRESS = "/images/SAVE_CHANGES_ICON_PRESS.png";
+		
+	// Constantes Generales del Frame
+	public static final String[] HEADERS_SUBJECT = {"Nombre de Asignatura","Logros","Nota Final"};
+
+	// Init Of Session
+	
 	public static final String ROUTE_IMAGEN_REPORT_STUDENT = "/images/Imagen_Student.png";
+	public static final String ROUTE_ASIG_SUBJECT_COURSE = "/images/Asig_Subject_Course.png";
+	public static final String ROUTE_ASIG_SUBJECT_COURSE_PRESS = "/images/Asig_Subject_Course_Press.png";
+
+
 
 	public static final String INIT_SESION = "/images/Init_Sesion.png";
 	public static final String INIT_SESION_PRESS = "/images/Init_Sesion_Press.png";

@@ -18,24 +18,28 @@ import utils.Constants;
 public class JDRegisterCourse extends JDialog {
 
 	private static final long serialVersionUID = 1L;
-	private JCBBaseComboBox teacherJCB;
+	private JCBBaseComboBox teacherJCB,subjectsJCB;
 	private JTextField nameCourseJL;
 	private JButton createJB;
 
-	public JDRegisterCourse(ControllerClient controllerApp, String[] teachers) {
+	public JDRegisterCourse(ControllerClient controllerApp, String[] teachers,String[]subjects) {
 		this.setSize(300, 300);
 		this.setLocationRelativeTo(null);
-		this.setLayout(new GridLayout(3, 1));
+		this.setLayout(new GridLayout(4, 1));
 		setIconImage(new ImageIcon(getClass().getResource(Constants.ICON)).getImage());
-		initComponents(controllerApp,teachers);
+		initComponents(controllerApp,teachers,subjects);
 		this.setVisible(true);
 	}
 
-	private void initComponents(ControllerClient controllerApp, String[]teachers) {
+	private void initComponents(ControllerClient controllerApp, String[]teachers,String[] subjects) {
 
 		teacherJCB = new JCBBaseComboBox(controllerApp, teachers, Constants.FONT_LOG_IN, Constants.COLOR_DARK_BLUE);
 		teacherJCB.setBorder(BorderFactory.createTitledBorder("Director de Curso"));
 		this.add(teacherJCB);
+		
+		subjectsJCB = new JCBBaseComboBox(controllerApp, subjects, Constants.FONT_LOG_IN, Constants.COLOR_DARK_BLUE);
+		subjectsJCB.setBorder(BorderFactory.createTitledBorder("Asignaturas para el curso"));
+		this.add(subjectsJCB);
 
 
 		nameCourseJL = new JTextField();
@@ -56,13 +60,14 @@ public class JDRegisterCourse extends JDialog {
 
 	public String getDatesUser() {
 		this.setVisible(false);
-		String result =  nameCourseJL.getText() + "#" + teacherJCB.getSelectedItem();
+		String result =  nameCourseJL.getText() + "#" + teacherJCB.getSelectedItem()+ "#" + subjectsJCB.getSelectedItem();
 		return result;
 	}
 	
 	public static void main(String[] args) throws FileNotFoundException, IOException {
-		String[] subjects = {"Luz","Pablo","Feney"};
-		new JDRegisterCourse(new ControllerClient(),subjects);
+		String[] teachers = {"Luz","Pablo","Feney"};
+		String[] subjects = {"Mat","Esp","Rel"};
+		new JDRegisterCourse(new ControllerClient(),teachers,subjects);
 	}
 
 }

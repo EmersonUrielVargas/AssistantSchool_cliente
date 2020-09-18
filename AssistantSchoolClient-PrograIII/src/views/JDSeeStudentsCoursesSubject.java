@@ -1,5 +1,6 @@
 package views;
 
+import java.awt.Color;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
@@ -19,6 +20,7 @@ public class JDSeeStudentsCoursesSubject extends JDialog {
 	public JDSeeStudentsCoursesSubject(ControllerClient controller, String[] notes, String typeUser) {
 		this.setSize(1000, 400);
 		this.setLocationRelativeTo(null);
+		this.setBackground(Color.WHITE);
 		setIconImage(new ImageIcon(getClass().getResource(Constants.ICON)).getImage());
 		initComponents(controller, notes, typeUser);
 		this.setVisible(true);

@@ -20,13 +20,14 @@ public class JDRegisterUser extends JDialog {
 	private static final long serialVersionUID = 1L;
 	private JCBBaseComboBox typeUserJCB, typeDocumentJCB,subjectsJCB,courseStudentJCB;
 	private JTextField lastNameJTF, numberIdJTF,nameUserJTF;
-	private JButton createJB;
+	private JButton createJB,returnAdmin;
 
 	public JDRegisterUser(ControllerClient controllerApp, String[] typeUsers, String[] typeDocumet,String[] subjects,String[] courses) {
 		this.setSize(500, 500);
 		this.setLocationRelativeTo(null);
-		this.setLayout(new GridLayout(8, 1));
+		this.setLayout(new GridLayout(9, 1));
 		setIconImage(new ImageIcon(getClass().getResource(Constants.ICON)).getImage());
+		this.setDefaultCloseOperation(0);
 		initComponents(controllerApp, typeUsers, typeDocumet,subjects,courses);
 	}
 
@@ -77,6 +78,16 @@ public class JDRegisterUser extends JDialog {
 		createJB.setActionCommand(Commands.ADD_CLIENT.toString());
 		createJB.addActionListener(controllerApp);
 		this.add(createJB);
+		
+		returnAdmin = new JButton();
+		returnAdmin.setFont(Constants.FONT_LOG_IN);
+		returnAdmin.setText("Retornar ");
+		returnAdmin.setFocusable(false);
+		returnAdmin.setBackground((Constants.COLOR_BLUE));
+		returnAdmin.setForeground(Color.WHITE);
+		returnAdmin.setActionCommand(Commands.RETURN_PANEL_4.toString());
+		returnAdmin.addActionListener(controllerApp);
+		this.add(returnAdmin);
 	}
 
 	public String getDatesUser() {

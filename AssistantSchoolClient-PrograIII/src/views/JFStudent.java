@@ -43,6 +43,14 @@ public class JFStudent extends JFrame{
 
 	}
 	
+	public String getValues() {
+		String values = "";
+		for (int i = 0; i < this.jpShowNotes.getValues().length; i++) {
+			values = values + this.jpShowNotes.getValues()[i] + "%";
+		}
+		return values;
+	}
+	
 	public static void main(String[] args) throws FileNotFoundException, IOException {
 		String[] note = {"calculo/4.5/4.3&logro dividir numeros&el taller estaba incompleto& /3.2&logro dividir numeros&el taller estaba incomplet& /3.5& & & /2.0& & & /",
 				"programacion/2.0/4.3&logro dividir numeros&el taller estaba incompleto& /3.2&logro dividir numeros&el taller estaba incomplet& /3.5& & & /2.0& & & /2.0& & & /",

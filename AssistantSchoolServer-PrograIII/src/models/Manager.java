@@ -87,6 +87,8 @@ public class Manager {
 	}
 
 	public void addStudent(Student student) {
+		Course course = courses.ask(new Course(student.getNameCourse()), courses.getRoot()).getData();
+		course.addStudent(student);
 		students.insert(student);
 		users.insert(new User(student, TypeUser.STUDENT));
 	}
@@ -281,7 +283,22 @@ public class Manager {
 			convertTeachersToString(auxiliar.getRigth());
 		}
 	}
-
+	
+//	private void getStudentNotesString(NodeAVL<PartialNote> auxiliar, String notes) {
+//		if (auxiliar != null) {
+//			getStudentNotesString(auxiliar.getLeft(), notes);
+//			notes = auxiliar.getData().getValue()
+//			auxiliar.getData().resetSubjectsString();
+//			convertTeachersToString(auxiliar.getRigth());
+//		}
+//	}
+	
+//	private String getNotesStudent(int studentID) {
+//		Student student = askStudent(new Student("","",null,studentID,""));
+//		student.getFinalNotes();
+//		
+//	}
+	
 	private void convertTeachersToStringOutSubjects(NodeAVL<Teacher> auxiliar) {
 		if (auxiliar != null) {
 			convertTeachersToStringOutSubjects(auxiliar.getLeft());
@@ -327,6 +344,11 @@ public class Manager {
 			studentsToCourse(auxiliar.getRigth(), course, subject);
 		}
 	}
+	
+	public void addSubjectToCourse(Course course , int codeSubject) {
+		Course auxiliar = courses.ask(course,courses.getRoot()).getData();
+		auxiliar.addCodeSubject(codeSubject);
+	}
 
 	private AVLTree<PartialNote> getPartialNotes(Student student, Subject subject) {
 		FinalNote auxF = student.askFinalNote(subject.getSubjectCode());
@@ -337,7 +359,7 @@ public class Manager {
 		if (auxiliar != null) {
 			partialNotesStudentToString(auxiliar.getLeft());
 			PartialNote auxP = auxiliar.getData();
-			partialNotesString+= auxP.getValue()+"&"+auxP.getArchivement()+"&"+auxP.getComment()+"&"+auxP.getComment()+"/";
+			partialNotesString+= auxP.getTopic() + "&"+ auxP.getValue()+"&"+auxP.getArchivement()+"&"+auxP.getComment()+"&"+auxP.getComment()+"/";
 			partialNotesStudentToString(auxiliar.getRigth());
 		}
 	}

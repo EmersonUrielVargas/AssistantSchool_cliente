@@ -15,7 +15,7 @@ import utils.Constants;
 public class JPCoursesAndSubjects extends JPanel {
 
 	private JBBaseButton createCourseJB, createSubjectJB, askCourseJB, asigSubjecJB,
-	asigCourseJB;
+	asigCourseJB,asigSubjectCourseJB;
 	private JCBBaseComboBox subjectsJCB, coursesJCB,subjects2JCB;
 
 	public JPCoursesAndSubjects(ControllerClient controller, String[] subjects, String[] courses) {
@@ -54,8 +54,13 @@ public class JPCoursesAndSubjects extends JPanel {
 		
 		askCourseJB = new JBBaseButton(Constants.ROUTE_SEE_COURSE, Constants.ROUTE_SEE_COURSE_PRESS, controller,
 				Commands.SEE_COURSES);
-		askCourseJB.setBounds(250, 330, 150, 80);
+		askCourseJB.setBounds(200, 330, 150, 80);
 		add(askCourseJB);
+		
+		asigSubjectCourseJB = new JBBaseButton(Constants.ROUTE_ASIG_SUBJECT_COURSE, Constants.ROUTE_ASIG_SUBJECT_COURSE_PRESS, controller,
+				Commands.ASIG_SUBJECT_TO_COURSE);
+		asigSubjectCourseJB.setBounds(360, 330, 150, 80);
+		add(asigSubjectCourseJB);
 		
 		asigSubjecJB = new JBBaseButton(Constants.ROUTE_ASIG_SUBJECT, Constants.ROUTE_ASIG_SUBJECT_PRESS, controller,
 				Commands.ASIG_SUBJECT);

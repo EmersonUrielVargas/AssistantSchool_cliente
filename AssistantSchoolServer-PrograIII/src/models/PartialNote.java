@@ -14,6 +14,10 @@ public class PartialNote {
 		this.value = value;
 		this.archivement = archivement;
 	}
+	
+	public PartialNote(String topic) {
+		this.topic = topic;
+	}
 
 	public String getTopic() {
 		return topic;

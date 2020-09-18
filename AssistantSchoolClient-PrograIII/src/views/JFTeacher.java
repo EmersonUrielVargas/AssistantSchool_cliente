@@ -13,6 +13,7 @@ import utils.Constants;
 public class JFTeacher extends JFrame{
 
 	private JPButtonsTeacher jpButtonsTeacher;
+	private JPTopics jpTopics;
 	private JPShowNotes jpShowNotes;
 	private JSBaseScroll jScroll;
 	
@@ -28,6 +29,15 @@ public class JFTeacher extends JFrame{
 		this.setVisible(true);
 	}
 	
+//	private String[] getTopicsNotes(String[] notes) {
+//		String[] topics = new String[7];
+//		for (int i = 0; i < notes.length; i++) {
+//			for (int j = 0; j < notes[i].split("&").length; j++) {
+//				
+//			}
+//		}
+//	}
+	
 
 	private void initComponents(ControllerClient controller, String[] notes,String[] subjects,String[] courses) {
 		this.jpButtonsTeacher = new JPButtonsTeacher(controller, subjects, courses);
@@ -40,17 +50,25 @@ public class JFTeacher extends JFrame{
 		this.add(jScroll);
 	}
 	
+	public String getValues() {
+		String values = "";
+		for (int i = 0; i < this.jpShowNotes.getValues().length; i++) {
+			values = values + this.jpShowNotes.getValues()[i] + "%";
+		}
+		return values;
+	}
+	
 	
 	
 	public static void main(String[] args) throws FileNotFoundException, IOException {
-		String[] note = {"Laura Acevedo/4.5/4.3&logro dividir numeros&el taller estaba incompleto& /3.2&logro dividir numeros&el taller estaba incomplet& /3.5& & & /2.0& & & /",
-				"Joaquin Vega/2.0/4.3&logro dividir numeros&el taller estaba incompleto& /3.2&logro dividir numeros&el taller estaba incomplet& /3.5& & & /2.0& & & /2.0& & & /",
-				"Nomi mars/2.0/4.3&logro dividir numeros&el taller estaba incompleto& /3.2&logro dividir numeros&el taller estaba incomplet& /3.5& & & /2.0& & & /2.0& & & /",
-				"lito rodriguez/2.0/4.3&logro dividir numeros&el taller estaba incompleto& /3.2&logro dividir numeros&el taller estaba incomplet& /3.5& & & /2.0& & & /2.0& & & /",
-				"raychel ichibinz/2.0/4.3&logro dividir numeros&el taller estaba incompleto& /3.2&logro dividir numeros&el taller estaba incomplet& /3.5& & & /2.0& & & /",
-				"euyeni boss/2.0/4.3&logro dividir numeros&el taller estaba incompleto& /3.2&logro dividir numeros&el taller estaba incomplet& /3.5& & & /2.0& & & /",
-				"pol rubio/2.0/4.3&logro dividir numeros&el taller estaba incompleto& /3.2&logro dividir numeros&el taller estaba incomplet& /3.5& & & /2.0& & & /",
-				"diego rivera/2.0/4.3&logro dividir numeros&el taller estaba incompleto& /3.2&logro dividir numeros&el taller estaba incomplet& /3.5& & & /2.0& & & /"};
+		String[] note = {"Laura Acevedo/4.5/Tema 1&4.3&logro dividir numeros&el taller estaba incompleto& /Tema 2&3.2&logro dividir numeros&el taller estaba incomplet& /Tema 3&3.5& & & /Tema 4&2.0& & & /",
+			"Joaquin Vega/2.0/Tema 1&4.3&logro dividir numeros&el taller estaba incompleto& /Tema 2&3.2&logro dividir numeros&el taller estaba incomplet& /Tema 3&3.5& & & /Tema 4&2.0& & & /Tema 5&2.0& & & /",
+			"Nomi mars/2.6/Tema 1&4.3&logro dividir numeros&el taller estaba incompleto& /Tema 2&3.2&logro dividir numeros&el taller estaba incomplet& /Tema 3&3.5& & & /Tema 4&2.0& & & /Tema 5&2.0& & & /",
+			"lito rodriguez/2.5/Tema 1&4.3&logro dividir numeros&el taller estaba incompleto& /Tema 2&3.2&logro dividir numeros&el taller estaba incomplet& /Tema 3&3.5& & & /Tema 4&2.0& & & /Tema 5&2.0& & & /",
+			"raychel ichibinz/2.4/Tema 1&4.3&logro dividir numeros&el taller estaba incompleto& /Tema 2&3.2&logro dividir numeros&el taller estaba incomplet& /Tema 3&3.5& & & /Tema 4&2.0& & & /",
+			"euyeni boss/2.3/Tema 1&4.3&logro dividir numeros&el taller estaba incompleto& /Tema 2&3.2&logro dividir numeros&el taller estaba incomplet& /Tema 3&3.5& & & /Tema 4&2.0& & & /",
+			"pol rubio/2.2/Tema 1&4.3&logro dividir numeros&el taller estaba incompleto& /Tema 2&3.2&logro dividir numeros&el taller estaba incomplet& /Tema 3&3.5& & & /Tema 4&2.0& & & /",
+			"diego rivera/2.1/Tema 1&4.3&logro dividir numeros&el taller estaba incompleto& /Tema 2&3.2&logro dividir numeros&el taller estaba incomplet& /Tema 3&3.5& & & /Tema 4&2.0& & & /"};
 		
 		String[] subject = {"calculo","algebra", "ecuaciones diferenciales"};
 		String[] course = {"sexto","sextoB", "noveno"};

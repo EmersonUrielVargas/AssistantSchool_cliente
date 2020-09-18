@@ -14,7 +14,7 @@ public class JPShowNotes extends JPanel {
 	public JPShowNotes(ControllerClient controller, String[] notes, String typeUser) {
 		super();
 		this.setLayout(null);
-//		this.setBackground(Color.BLUE);
+		this.setBackground(Color.WHITE);
 		this.setPreferredSize(new Dimension(990, (notes.length * 70 + 300)));
 		this.listNotes = new ArrayList<JPShowPanelNotes>();
 		initComponents(controller, notes, typeUser);
@@ -73,4 +73,17 @@ public class JPShowNotes extends JPanel {
 			listNotes.add(jpanelNote);
 		}
 	}
-}
+
+	public String[] getValues() {
+		String[] values = new String[listNotes.size()];
+		for (int i = 0; i < values.length; i++) {
+			for (int j = 0; j < listNotes.get(i).getValues().length; j++) {
+				values[i] = values[i]+ listNotes.get(i).getValues()[j]+"/";
+			}
+		}
+		return values;
+	}
+	
+
+	
+	}

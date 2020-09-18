@@ -14,7 +14,9 @@ public class Student extends Person {
 		this.nameCourse = nameCourse;
 		finalNotes = new AVLTree<>(new ComparatorByFinalNoteStudent());
 	}
-	
+	public String seeStudent() {
+		return "El estudiante con el codigo ingresado es: " + this.getName() +"" + this.getLastName() + "-" + this.getTypeId() + "_" + this.getNumberId() ;
+	}
 	public void addPartialNote(PartialNote partialNote,int subjectId) {
 		System.out.println(subjectId);
 		FinalNote auxiliar = this.askFinalNote(subjectId);

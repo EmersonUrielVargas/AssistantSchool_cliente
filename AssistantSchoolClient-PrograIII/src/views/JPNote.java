@@ -1,10 +1,13 @@
 package views;
 
+import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.Frame;
 import java.awt.GridLayout;
 import java.awt.Point;
 import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
@@ -16,20 +19,21 @@ import controller.Commands;
 import controller.ControllerClient;
 import utils.Constants;
 
-public class JPNote extends JPanel{
+public class JPNote extends JPanel implements ActionListener{
 	
 	private JTFBaseTextField jtNote;
 	private JBBaseButton jbshowcommits;
 	private JDialogCommitsNote jdcommentN;
 	
-	public JPNote(ControllerClient controller) {
+	public JPNote(ControllerClient controller,String TypeUser) {
 		super(new FlowLayout());
 		this.setSize(15, 10);
+		this.setBackground(Color.WHITE);
 		init(controller);
 		this.setBorder(BorderFactory.createLineBorder(Constants.DARK_BLUE));
 	}
 	
-	public JPNote(ControllerClient controller, String title) {
+	public JPNote(String title) {
 		super(new FlowLayout());
 		this.setSize(20, 10);
 		this.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Constants.DARK_BLUE), title));
@@ -40,9 +44,8 @@ public class JPNote extends JPanel{
 	
 	private void init(ControllerClient controller) {
 		this.jtNote = new JTFBaseTextField(Constants.BASE_BLUE, Constants.TWENTY_BASE_FONT, 3);
-		this.jbshowcommits = new JBBaseButton(Constants.SHOW_COMMENTS_ICON, Constants.SHOW_COMMENTS_ICON_PRESS, controller, Commands.AC_SHOW_COMMENTS_BUTTON);
-		this.jdcommentN = new JDialogCommitsNote(controller);
-		
+		this.jbshowcommits = new JBBaseButton(Constants.SHOW_COMMENTS_ICON, Constants.SHOW_COMMENTS_ICON_PRESS,this, Commands.AC_SHOW_COMMENTS_BUTTON);
+		this.jdcommentN = new JDialogCommitsNote(this);
 		this.add(jtNote);
 		this.add(jbshowcommits);
 	}
@@ -74,19 +77,49 @@ public class JPNote extends JPanel{
 		this.jtNote.setText(note);
 	}
 	
+	
+	public void initToTeacher(String topic,String valuenote, String achievement, String commentTeacher, String commentStudent) {
+		this.jdcommentN.initData(topic, valuenote, achievement, commentTeacher, commentStudent);
+		this.jtNote.setText(this.jdcommentN.getValues()[1]);
+	}
+	
+	public void initToStudent(String topic,String valuenote, String achievement, String commentTeacher, String commentStudent) {
+		this.jdcommentN.initData(topic, valuenote, achievement, commentTeacher, commentStudent);
+		this.jtNote.setText(this.jdcommentN.getValues()[1]);
+	}
+	
+	public String[] getValues() {
+		return this.jdcommentN.getValues();
+	}
+	
+	public String getValueNote() {
+		return this.jtNote.getText();
+	}
+	
+	public void setVisbleJDialogComments(boolean isVisible) {
+		this.jdcommentN.setVisible(isVisible);
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent actionEvent) {
+		switch (Commands.valueOf(actionEvent.getActionCommand())) {
+		case AC_SHOW_COMMENTS_BUTTON:
+			this.jdcommentN.setVisible(true);
+			break;
+		case AC_SAVE_COMMENTS_BUTTON:
+			this.jdcommentN.setVisible(false);
+			this.jtNote.setText(this.jdcommentN.getValues()[1]);
+			break;
+
+		default:
+			break;
+		}
+		
+	}
+
 	public void setNoteEditable(boolean isEditable) {
 		this.jtNote.setEditable(isEditable);
-	}
-	
-	public void initToTeacher(String valuenote, String achievement, String commentTeacher, String commentStudent) {
-		this.jtNote.setText(valuenote);
-		this.jdcommentN.initToTeacher(achievement, commentTeacher, commentStudent);
-	}
-	
-	public void initToStudent(String valuenote, String achievement, String commentTeacher, String commentStudent) {
-		this.jtNote.setText(valuenote);
-		this.jdcommentN.initToStudent(achievement, commentTeacher, commentStudent);
-		this.setVisible(true);
+		
 	}
 	
 	

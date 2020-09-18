@@ -76,12 +76,14 @@ public class ThreadClient extends Thread {
 
 				case 7:
 					String[] teachers = manager.getTeachersStringOutSubjects().split(",");
-//					for (int i = 0; i < teachers.length; i++) {
-//						System.out.println(teachers[i]);
-//					}
 					output.writeInt(teachers.length);
 					for (int i = 0; i < teachers.length; i++) {
 						output.writeUTF(teachers[i]);
+					}
+					String[] subjects1 = manager.getSubjectsString().split("-");
+					output.writeInt(subjects1.length);
+					for (int i = 0; i < subjects1.length; i++) {
+						output.writeUTF(subjects1[i]);
 					}
 					manager.resetStrings();
 					break;
@@ -90,7 +92,10 @@ public class ThreadClient extends Thread {
 					String[] convert = course.split("#");
 					int id = Integer.parseInt(convert[1].split("_")[1]);
 					Teacher taux = new Teacher("", "", TypeId.CC, id);
-					manager.addCourse(new Course(convert[0], manager.askTeacher(taux)));
+					Course course1 = new Course(convert[0], manager.askTeacher(taux));
+					course1.addCodeSubject(Integer.parseInt(convert[2].split("_")[1]));
+					manager.addCourse(course1);
+					
 					break;
 				case 9:
 					String subject = input.readUTF();
@@ -130,10 +135,10 @@ public class ThreadClient extends Thread {
 					for (int i = 0; i < teachers2.length; i++) {
 						output.writeUTF(teachers2[i]);
 					}
-					String[] subjects1 = manager.getSubjectsString().split("-");
-					output.writeInt(subjects1.length);
-					for (int i = 0; i < subjects1.length; i++) {
-						output.writeUTF(subjects1[i]);
+					String[] subjects2 = manager.getSubjectsString().split("-");
+					output.writeInt(subjects2.length);
+					for (int i = 0; i < subjects2.length; i++) {
+						output.writeUTF(subjects2[i]);
 					}
 					manager.resetStrings();
 					
@@ -142,12 +147,48 @@ public class ThreadClient extends Thread {
 					String dates = input.readUTF();
 					String[] notes = dates.split("#");
 					System.out.println(notes[0]);
-					Course course1 = manager.askCourse(new Course(notes[1]));
+					Course course2 = manager.askCourse(new Course(notes[1]));
 					Subject subject1 =  manager.askSubject(new Subject(Integer.parseInt(notes[0].split("_")[1]), ""));
-					output.writeUTF(manager.getStudentsToCourse(course1, subject1));
+					output.writeUTF(manager.getStudentsToCourse(course2, subject1));
 					manager.resetStrings();
-				}
+					break;
+				
+				case 15:
+					String[] courses3 = manager.getCoursesString().split("-");
+					output.writeInt(courses3.length);
+					for (int i = 0; i < courses3.length; i++) {
+						output.writeUTF(courses3[i]);
+					}
+					String[] subjects3 = manager.getSubjectsString().split("-");
+					output.writeInt(subjects3.length);
+					for (int i = 0; i < subjects3.length; i++) {
+						output.writeUTF(subjects3[i]);
+					}
+					manager.resetStrings();
+					break;
+				case 16:
+					String[] datas2 = input.readUTF().split("#");
+					Course auxCourse = new Course(datas2[1]);
+					manager.addSubjectToCourse(auxCourse, Integer.parseInt(datas2[0]));
+					break;
+				case 17:
+					int code = Integer.parseInt(input.readUTF());
+					Teacher teacher = manager.askTeacher(new Teacher("", "", TypeId.CC, code));
+					Student student = manager.askStudent(new Student("", "", TypeId.CC, code,""));
+					if(manager.getStudents().exist(student,manager.getStudents().getRoot() )) {
+						output.writeUTF(teacher.seeTeacher());
+					}
+					if(manager.getTeachers().exist(teacher,manager.getTeachers().getRoot() )) {
+						output.writeUTF(student.seeStudent());
 
+					}else {
+						output.writeUTF("El usuario no se encuentra en el sistema");
+
+					}
+
+					break;
+				}
+		
 			}
 
 		} catch (IOException e) {

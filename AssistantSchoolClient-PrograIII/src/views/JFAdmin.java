@@ -81,9 +81,7 @@ public class JFAdmin extends JFrame {
 		add(scroll);
 	}
 	
-	public void visiblePanelTeachers() {
-		
-	}
+
 
 	public void initPanelUsers(String[] strings) {
 		this.imagePanelJP.setVisible(false);
