@@ -22,6 +22,7 @@ public class Manager {
 	private String teachersString;
 	private String studentsString;
 	private String partialNotesString;
+	private String notesTeacherSubject_Course;
 
 	public Manager() {
 		users = new AVLTree<User>(new ComparatorByUsers());
@@ -264,7 +265,7 @@ public class Manager {
 			convertSubjectsString(auxiliar.getRigth());
 		}
 	}
-
+	
 	private void convertCoursesToString(NodeAVL<Course> auxiliar) {
 		if (auxiliar != null) {
 			convertCoursesToString(auxiliar.getLeft());
@@ -292,7 +293,7 @@ public class Manager {
 //			convertTeachersToString(auxiliar.getRigth());
 //		}
 //	}
-	
+//	
 //	private String getNotesStudent(int studentID) {
 //		Student student = askStudent(new Student("","",null,studentID,""));
 //		student.getFinalNotes();

@@ -20,20 +20,18 @@ public class JPShowNotes extends JPanel {
 		initComponents(controller, notes, typeUser);
 		this.setVisible(true);
 	}
-<<<<<<< HEAD
 
-	private void initComponents(ControllerClient controller, String[] notes, String typeUser) {
-		if (typeUser.compareToIgnoreCase("Teacher") == 0) {
-			chargeNotesTeacher(controller, notes);
-		} else {
-//			System.out.println("ENTRO AL PANEL");
-			chargeNotesStudent(controller, notes);
-		}
-=======
+
+//	private void initComponents(ControllerClient controller, String[] notes, String typeUser) {
+//		if (typeUser.compareToIgnoreCase("Teacher") == 0) {
+//			chargeNotesTeacher(controller, notes);
+//		} else {
+////			System.out.println("ENTRO AL PANEL");
+//			chargeNotesStudent(controller, notes);
+//		}
 	
 	private void initComponents(ControllerClient controller,String[] notes,String typeUser) {
 		chargeNotes(controller, notes, typeUser);
->>>>>>> branch 'master' of https://github.com/EmersonUrielVargas/AssistantSchool_cliente.git
 		int positionY = 0;
 		for (int i = 0; i < listNotes.size(); i++) {
 			this.listNotes.get(i).setBounds(0, positionY, 1000, 70);
@@ -42,7 +40,7 @@ public class JPShowNotes extends JPanel {
 		}
 
 	}
-<<<<<<< HEAD
+
 
 	public void chargeNotesTeacher(ControllerClient controller, String[] notes) {
 		String[] notesData;
@@ -52,7 +50,7 @@ public class JPShowNotes extends JPanel {
 		for (int i = 0; i < notes.length; i++) {
 			notesData = notes[i].split("/");
 			notesLoad = new String[notesData.length - 2];
-			jpanelNote = new JPShowPanelNotes(controller, notesData[0]);
+			jpanelNote = new JPShowPanelNotes(controller, notesData[0],"teacher");
 			jpanelNote.addFinalNote(notesData[1]);
 			for (int j = 2; j < notesData.length; j++) {
 				notesLoad[j - 2] = notesData[j];
@@ -62,30 +60,26 @@ public class JPShowNotes extends JPanel {
 		}
 	}
 
-	public void chargeNotesStudent(ControllerClient controller, String[] notes) {
+//	public void chargeNotesStudent(ControllerClient controller, String[] notes) {
 //		for (int i = 0; i < notes.length; i++) {
 //			System.out.println(notes[i]);
 //		}
 
-=======
 	
 	public void chargeNotes(ControllerClient controller, String[] notes,String typeUser) {
 		String[] notesData;
 		String[] notesLoad;
 		String subject;
 		JPShowPanelNotes jpanelNote;
->>>>>>> branch 'master' of https://github.com/EmersonUrielVargas/AssistantSchool_cliente.git
+
 		for (int i = 0; i < notes.length; i++) {
-<<<<<<< HEAD
 			String[] notesData = notes[i].split("/");
 			String[] notesLoad = new String[notesData.length - 2];
 			JPShowPanelNotes jpanelNote = new JPShowPanelNotes(controller, notesData[0]);
-=======
 			notesData = notes[i].split("/");
 			notesLoad = new String[notesData.length-2];
 			String nameF = "<html>"+(((notesData[0]).split("-"))[0])+"<br>"+(((notesData[0]).split("-"))[1])+"</html>";
 			jpanelNote = new JPShowPanelNotes(controller, nameF,typeUser);
->>>>>>> branch 'master' of https://github.com/EmersonUrielVargas/AssistantSchool_cliente.git
 			jpanelNote.addFinalNote(notesData[1]);
 			for (int j = 2; j < notesData.length; j++) {
 				notesLoad[j - 2] = notesData[j];

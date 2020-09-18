@@ -1,25 +1,24 @@
-  
+
 package views;
 
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
-import java.awt.Frame;
-import java.awt.GridLayout;
 import java.awt.Point;
 import java.awt.event.ActionListener;
-import java.io.FileNotFoundException;
-import java.io.IOException;
 
 import javax.swing.BorderFactory;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
 
 import controller.Commands;
-import controller.ControllerClient;
 import utils.Constants;
 
-public class JDialogCommitsNote extends JDialog{
+public class JDialogCommitsNote extends JDialog {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JPanel jPTeacher;
 	private JPanel jPStudent;
 	private JTFBaseTextField jTFTopic;
@@ -28,41 +27,36 @@ public class JDialogCommitsNote extends JDialog{
 	private JTABase jTAcommentT;
 	private JTABase jTAcommentS;
 	private JBBaseButton jBsave;
-	
-<<<<<<< HEAD
-	public JDialogCommitsNote(ActionListener ac) {
-=======
+
 	public JDialogCommitsNote(ActionListener ac, String typeUser) {
->>>>>>> branch 'master' of https://github.com/EmersonUrielVargas/AssistantSchool_cliente.git
 		super();
 		this.setBackground(Color.WHITE);
 		this.setSize(350, 420);
-<<<<<<< HEAD
-		initComponent(ac);
-=======
 		initComponent(ac, typeUser);
->>>>>>> branch 'master' of https://github.com/EmersonUrielVargas/AssistantSchool_cliente.git
+		initComponent(ac, typeUser);
 		this.setLayout(new FlowLayout());
-		
+
 	}
 
-<<<<<<< HEAD
-	private void initComponent(ActionListener ac) {
-=======
 	private void initComponent(ActionListener ac, String typeUser) {
->>>>>>> branch 'master' of https://github.com/EmersonUrielVargas/AssistantSchool_cliente.git
 		this.setUndecorated(true);
-		this.jTFTopic= new JTFBaseTextField(Constants.BASE_BLUE,Constants.FOURTEEN_BOLD_BASE_FONT, 17);
-		this.jTFTopic.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Constants.DARK_BLUE), "Tema"));
-		this.jTFnote = new JTFBaseTextField(Constants.BASE_BLUE,Constants.FOURTEEN_BOLD_BASE_FONT, 7);
-		this.jTFnote.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Constants.DARK_BLUE), "Nota"));
+		this.jTFTopic = new JTFBaseTextField(Constants.BASE_BLUE, Constants.FOURTEEN_BOLD_BASE_FONT, 17);
+		this.jTFTopic.setBorder(
+				BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Constants.DARK_BLUE), "Tema"));
+		this.jTFnote = new JTFBaseTextField(Constants.BASE_BLUE, Constants.FOURTEEN_BOLD_BASE_FONT, 7);
+		this.jTFnote.setBorder(
+				BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Constants.DARK_BLUE), "Nota"));
 		this.jTAachievement = new JTABase(Constants.FOURTEEN_BOLD_BASE_FONT, Constants.BASE_BLUE, 320, 100);
-		this.jTAachievement.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Constants.DARK_BLUE), "Logros"));
+		this.jTAachievement.setBorder(
+				BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Constants.DARK_BLUE), "Logros"));
 		this.jTAcommentT = new JTABase(Constants.FOURTEEN_BOLD_BASE_FONT, Constants.BASE_BLUE, 320, 60);
-		this.jTAcommentT.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Constants.DARK_BLUE), "Comentario"));
+		this.jTAcommentT.setBorder(
+				BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Constants.DARK_BLUE), "Comentario"));
 		this.jTAcommentS = new JTABase(Constants.FOURTEEN_BOLD_BASE_FONT, Constants.DARK_BLUE, 320, 60);
-		this.jTAcommentS.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Constants.DARK_BLUE), "Comentario"));
-		this.jBsave = new JBBaseButton(Constants.SAVE_COMMENTS_ICON, Constants.SAVE_COMMENTS_ICON_PRESS, ac, Commands.AC_SAVE_COMMENTS_BUTTON);
+		this.jTAcommentS.setBorder(
+				BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Constants.DARK_BLUE), "Comentario"));
+		this.jBsave = new JBBaseButton(Constants.SAVE_COMMENTS_ICON, Constants.SAVE_COMMENTS_ICON_PRESS, ac,
+				Commands.AC_SAVE_COMMENTS_BUTTON);
 		this.jPTeacher = new JPanel(new FlowLayout());
 		this.jPTeacher.setPreferredSize(new Dimension(330, 250));
 		this.jPStudent = new JPanel(new FlowLayout());
@@ -71,7 +65,7 @@ public class JDialogCommitsNote extends JDialog{
 		this.jTFTopic.setEditable(false);
 		if (typeUser.equalsIgnoreCase("teacher")) {
 			initToTeacher();
-		}else {
+		} else {
 			initToStudent();
 		}
 		this.jPTeacher.add(jTFTopic);
@@ -82,10 +76,10 @@ public class JDialogCommitsNote extends JDialog{
 		this.add(jPTeacher);
 		this.add(jPStudent);
 		this.add(jBsave);
-		
+
 		this.setVisible(false);
 	}
-	
+
 	public void initData(String topic, String note, String achievement, String commentTeacher, String commentStudent) {
 		this.jTFTopic.setText(topic);
 		this.jTFnote.setText(note);
@@ -98,15 +92,14 @@ public class JDialogCommitsNote extends JDialog{
 		this.jTAachievement.setEditable(true);
 		this.jTAcommentT.setEditable(true);
 	}
-	
+
 	public void initToTeacher() {
-<<<<<<< HEAD
+
 		this.jTFTopic.setEditable(true);
 		this.jTFnote.setEditable(true);
 		this.jTAcommentS.setEditable(false);
 		this.jTAachievement.setEditable(true);
 		this.jTAcommentT.setEditable(true);
-=======
 		this.jTFTopic.setEditable(false);
 		this.jTFnote.setEditable(true);
 		this.jTAcommentS.setEditable(false);
@@ -114,9 +107,8 @@ public class JDialogCommitsNote extends JDialog{
 		this.jTAcommentT.setEditable(true);
 		System.out.println("soy profesor");
 		System.out.println(jTFTopic.isEditable());
->>>>>>> branch 'master' of https://github.com/EmersonUrielVargas/AssistantSchool_cliente.git
 	}
-	
+
 	public void initToStudent() {
 		this.jTFTopic.setEditable(false);
 		this.jTFnote.setEditable(false);
@@ -126,10 +118,11 @@ public class JDialogCommitsNote extends JDialog{
 		System.out.println(jTFTopic.isEditable());
 		System.out.println("soy Estudiante");
 	}
-	
+
 	public void setPosition(Point point) {
 		this.setPosition(point);
 	}
+
 	public String[] getValues() {
 		String[] values = new String[5];
 		values[0] = this.jTFTopic.getText();
@@ -139,10 +132,9 @@ public class JDialogCommitsNote extends JDialog{
 		values[4] = this.jTAcommentS.getText();
 		return values;
 	}
-	
+
 	public void setValueNote(String note) {
 		this.jTFnote.setText(note);
 	}
-	
 
 }

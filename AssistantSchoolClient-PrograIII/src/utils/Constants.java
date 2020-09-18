@@ -23,10 +23,6 @@ public class Constants {
 //Constants of Jbuttons student-----------------------------------------------
 	
 	
-		
-		public static final String SAVE_CHANGES_ICON = "/images/SAVE_CHANGES_ICON.png";
-		public static final String SAVE_CHANGES_ICON_PRESS = "/images/SAVE_CHANGES_ICON_PRESS.png";
-		
 	// Constantes Generales del Frame
 	public static final String[] HEADERS_SUBJECT = {"Nombre de Asignatura","Logros","Nota Final"};
 

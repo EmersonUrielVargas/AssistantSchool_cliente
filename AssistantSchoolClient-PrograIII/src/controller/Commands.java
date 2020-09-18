@@ -3,17 +3,13 @@ package controller;
 public enum Commands {
 	REMOVE_USER,
 	C_LOG_IN,
-<<<<<<< HEAD
 	RETURN_LOG_IN,
 	RETURN_PANEL_1,
 	RETURN_PANEL_2,
 	RETURN_PANEL_4,
-=======
 	AC_SAVE_CHANGES_BUTTON,
 	AC_SEARCH_BY_WORDS,
-	
->>>>>>> branch 'master' of https://github.com/EmersonUrielVargas/AssistantSchool_cliente.git
-	AC_SHOW_NOTES_BUTTON,
+		AC_SHOW_NOTES_BUTTON,
 	AC_SHOW_COMMENTS_BUTTON,
 	AC_SAVE_COMMENTS_BUTTON,
 	AC_SHOW_REPORT_BUTTON,
@@ -37,7 +33,5 @@ public enum Commands {
 	ADD_SUBJECT_TO_COURSE,
 	RETURN_PANEL_3,
 	ASIG_COURSE,
-	SEE_COURSES,
-	AC_SAVE_CHANGES_BUTTON,
-	
+	SEE_COURSES,	
 }

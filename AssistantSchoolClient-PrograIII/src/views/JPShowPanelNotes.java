@@ -27,21 +27,14 @@ public class JPShowPanelNotes extends JPanel{
 
 	private void initComponents(ControllerClient controller, String namePanel,String typeUser) {
 		this.jLNamePanel = new JLBaseLabel(namePanel, Constants.FOURTEEN_BOLD_BASE_FONT, Constants.BASE_BLUE);
-<<<<<<< HEAD
-=======
 		this.jLNamePanel.setBounds(10, 5, 170, 60);
->>>>>>> branch 'master' of https://github.com/EmersonUrielVargas/AssistantSchool_cliente.git
 		this.jPNoteFinal = new JPNote("Nota Final");
 		this.add(jLNamePanel);
 		int positionX = 180;
 		for (int i = 0; i < listNotes.length; i++) {
-<<<<<<< HEAD
 			listNotes[i] = new JPNote(controller, "Student");
-			
-=======
 			listNotes[i] = new JPNote(controller, typeUser);
 			listNotes[i].setBounds(positionX, 15, 90, 40);
->>>>>>> branch 'master' of https://github.com/EmersonUrielVargas/AssistantSchool_cliente.git
 			this.add(listNotes[i]);
 			positionX+= 95;
 		}

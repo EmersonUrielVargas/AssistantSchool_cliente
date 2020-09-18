@@ -17,19 +17,17 @@ public class JFTeacher extends JFrame{
 	private JPShowNotes jpShowNotes;
 	private JSBaseScroll jScroll;
 	
-	public JFTeacher(ControllerClient controller, String[] notes, String[] subjects, String[] courses) {
+	public JFTeacher(ControllerClient controller, String[] subjects, String[] courses) {
 		this.setLayout(null);
 		this.getContentPane().setBackground(Color.white);
 		this.setSize(1000, 700);
 		this.setLocationRelativeTo(null);
 		this.setResizable(false);
 		setIconImage(new ImageIcon(getClass().getResource(Constants.ICON)).getImage());
-		initComponents(controller,notes, subjects, courses);
+		initComponents(controller, subjects, courses);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.setVisible(true);
 	}
 	
-<<<<<<< HEAD
 //	private String[] getTopicsNotes(String[] notes) {
 //		String[] topics = new String[7];
 //		for (int i = 0; i < notes.length; i++) {
@@ -38,7 +36,6 @@ public class JFTeacher extends JFrame{
 //			}
 //		}
 //	}
-=======
 	private String[] getTopicsNotes(String[] notes) {
 		String[] topics = new String[7];
 		for (int i = 0; i < notes.length; i++) {
@@ -48,21 +45,28 @@ public class JFTeacher extends JFrame{
 		}
 		return topics;
 	}
->>>>>>> branch 'master' of https://github.com/EmersonUrielVargas/AssistantSchool_cliente.git
 	
 
-	private void initComponents(ControllerClient controller, String[] notes,String[] subjects,String[] courses) {
+	private void initComponents(ControllerClient controller,String[] subjects,String[] courses) {
 		this.jpButtonsTeacher = new JPButtonsTeacher(controller, subjects, courses);
-		this.jpShowNotes = new JPShowNotes(controller, notes,"teacher");
+		
+
+
+
 		this.jpButtonsTeacher.setBounds(0, 0, 990, 150);
+      
+		this.add(jpButtonsTeacher);
+	}
+	
+	public void initNotesPanel(ControllerClient controller , String[] notes) {
+		this.jpShowNotes = new JPShowNotes(controller, notes,"teacher");
 		this.jpTopics = new JPTopics(controller, getTopicsNotes(notes));
 		this.jpTopics.setBounds(0, 150, 1000, 60);
         this.jScroll = new JSBaseScroll(jpShowNotes);
-        this.jScroll.isVisible(true);
-		this.jScroll.setBounds(0, 210, 995, 580);
-		this.add(jpButtonsTeacher);
 		this.add(jpTopics);
-		this.add(jScroll);
+		  this.jScroll.isVisible(true);
+			this.jScroll.setBounds(0, 210, 995, 580);
+			this.add(jScroll);
 	}
 	
 	public String getValues() {
@@ -76,7 +80,6 @@ public class JFTeacher extends JFrame{
 	
 	
 	public static void main(String[] args) throws FileNotFoundException, IOException {
-<<<<<<< HEAD
 		String[] note = {"Laura Acevedo/4.5/Tema 1&4.3&logro dividir numeros&el taller estaba incompleto& /Tema 2&3.2&logro dividir numeros&el taller estaba incomplet& /Tema 3&3.5& & & /Tema 4&2.0& & & /",
 			"Joaquin Vega/2.0/Tema 1&4.3&logro dividir numeros&el taller estaba incompleto& /Tema 2&3.2&logro dividir numeros&el taller estaba incomplet& /Tema 3&3.5& & & /Tema 4&2.0& & & /Tema 5&2.0& & & /",
 			"Nomi mars/2.6/Tema 1&4.3&logro dividir numeros&el taller estaba incompleto& /Tema 2&3.2&logro dividir numeros&el taller estaba incomplet& /Tema 3&3.5& & & /Tema 4&2.0& & & /Tema 5&2.0& & & /",
@@ -85,20 +88,20 @@ public class JFTeacher extends JFrame{
 			"euyeni boss/2.3/Tema 1&4.3&logro dividir numeros&el taller estaba incompleto& /Tema 2&3.2&logro dividir numeros&el taller estaba incomplet& /Tema 3&3.5& & & /Tema 4&2.0& & & /",
 			"pol rubio/2.2/Tema 1&4.3&logro dividir numeros&el taller estaba incompleto& /Tema 2&3.2&logro dividir numeros&el taller estaba incomplet& /Tema 3&3.5& & & /Tema 4&2.0& & & /",
 			"diego rivera/2.1/Tema 1&4.3&logro dividir numeros&el taller estaba incompleto& /Tema 2&3.2&logro dividir numeros&el taller estaba incomplet& /Tema 3&3.5& & & /Tema 4&2.0& & & /"};
-=======
-		String[] note = {"Laura Acevedo-2411241134/4.5/Tema 1&4.3&logro dividir numeros&el taller estaba incompleto& /Tema 2&3.2&logro dividir numeros&el taller estaba incomplet& /Tema 3&3.5& & & /Tema 4&2.0& & & /",
-			"Joaquin Vega-1432114/2.0/Tema 1&4.3&logro dividir numeros&el taller estaba incompleto& /Tema 2&3.2&logro dividir numeros&el taller estaba incomplet& /Tema 3&3.5& & & /Tema 4&2.0& & & /Tema 5&2.0& & & /",
-			"Nomi mars-423412/2.6/Tema 1&4.3&logro dividir numeros&el taller estaba incompleto& /Tema 2&3.2&logro dividir numeros&el taller estaba incomplet& /Tema 3&3.5& & & /Tema 4&2.0& & & /Tema 5&2.0& & & /",
-			"lito rodriguez-42134/2.5/Tema 1&4.3&logro dividir numeros&el taller estaba incompleto& /Tema 2&3.2&logro dividir numeros&el taller estaba incomplet& /Tema 3&3.5& & & /Tema 4&2.0& & & /Tema 5&2.0& & & /",
-			"raychel ichibinz-42151/2.4/Tema 1&4.3&logro dividir numeros&el taller estaba incompleto& /Tema 2&3.2&logro dividir numeros&el taller estaba incomplet& /Tema 3&3.5& & & /Tema 4&2.0& & & /",
-			"euyeni boss-144134/2.3/Tema 1&4.3&logro dividir numeros&el taller estaba incompleto& /Tema 2&3.2&logro dividir numeros&el taller estaba incomplet& /Tema 3&3.5& & & /Tema 4&2.0& & & /",
-			"pol rubio-14342/2.2/Tema 1&4.3&logro dividir numeros&el taller estaba incompleto& /Tema 2&3.2&logro dividir numeros&el taller estaba incomplet& /Tema 3&3.5& & & /Tema 4&2.0& & & /",
-			"diego rivera-124534/2.1/Tema 1&4.3&logro dividir numeros&el taller estaba incompleto& /Tema 2&3.2&logro dividir numeros&el taller estaba incomplet& /Tema 3&3.5& & & /Tema 4&2.0& & & /"};
->>>>>>> branch 'master' of https://github.com/EmersonUrielVargas/AssistantSchool_cliente.git
-		
+//		String[] note = {"Laura Acevedo-2411241134/4.5/Tema 1&4.3&logro dividir numeros&el taller estaba incompleto& /Tema 2&3.2&logro dividir numeros&el taller estaba incomplet& /Tema 3&3.5& & & /Tema 4&2.0& & & /",
+//			"Joaquin Vega-1432114/2.0/Tema 1&4.3&logro dividir numeros&el taller estaba incompleto& /Tema 2&3.2&logro dividir numeros&el taller estaba incomplet& /Tema 3&3.5& & & /Tema 4&2.0& & & /Tema 5&2.0& & & /",
+//			"Nomi mars-423412/2.6/Tema 1&4.3&logro dividir numeros&el taller estaba incompleto& /Tema 2&3.2&logro dividir numeros&el taller estaba incomplet& /Tema 3&3.5& & & /Tema 4&2.0& & & /Tema 5&2.0& & & /",
+//			"lito rodriguez-42134/2.5/Tema 1&4.3&logro dividir numeros&el taller estaba incompleto& /Tema 2&3.2&logro dividir numeros&el taller estaba incomplet& /Tema 3&3.5& & & /Tema 4&2.0& & & /Tema 5&2.0& & & /",
+//			"raychel ichibinz-42151/2.4/Tema 1&4.3&logro dividir numeros&el taller estaba incompleto& /Tema 2&3.2&logro dividir numeros&el taller estaba incomplet& /Tema 3&3.5& & & /Tema 4&2.0& & & /",
+//			"euyeni boss-144134/2.3/Tema 1&4.3&logro dividir numeros&el taller estaba incompleto& /Tema 2&3.2&logro dividir numeros&el taller estaba incomplet& /Tema 3&3.5& & & /Tema 4&2.0& & & /",
+//			"pol rubio-14342/2.2/Tema 1&4.3&logro dividir numeros&el taller estaba incompleto& /Tema 2&3.2&logro dividir numeros&el taller estaba incomplet& /Tema 3&3.5& & & /Tema 4&2.0& & & /",
+//			"diego rivera-124534/2.1/Tema 1&4.3&logro dividir numeros&el taller estaba incompleto& /Tema 2&3.2&logro dividir numeros&el taller estaba incomplet& /Tema 3&3.5& & & /Tema 4&2.0& & & /"};
+//		
 		String[] subject = {"calculo","algebra", "ecuaciones diferenciales"};
 		String[] course = {"sexto","sextoB", "noveno"};
-		new JFTeacher(new ControllerClient(), note, subject, course);
+		JFTeacher fra = new JFTeacher(new ControllerClient(), subject, course);
+		fra.initNotesPanel(new ControllerClient(), note);
+		fra.setVisible(true);
 	}
 
 }

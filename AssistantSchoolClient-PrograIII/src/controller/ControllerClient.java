@@ -50,46 +50,17 @@ public class ControllerClient implements ActionListener, ItemListener {
 		input = new DataInputStream(socket.getInputStream());
 		initLogin();
 	}
-	
+
 	public void initLogin() {
 		String[] users = { "Admin", "Docente", "Estudiante" };
 		loginJD = new JDLogin(this, users);
 		loginJD.setVisible(true);
 	}
 
-	@Override
 	public void actionPerformed(ActionEvent actionEvent) {
 		switch (Commands.valueOf(actionEvent.getActionCommand())) {
-		case AC_SHOW_NOTES_BUTTON:
-			
-			break;
-		case AC_SHOW_COMMENTS_BUTTON:
-			
-			break;
-		case AC_SAVE_COMMENTS_BUTTON:
-			
-			break;
-		case AC_SHOW_REPORT_BUTTON:
-			
-			break;
-		case AC_SHOW_COURSES_BUTTON:
-			
-			break;
-		case AC_SHOW_SUBJECTS_BUTTON:
-			
-			break;
-		case AC_SHOW_LOGOUT_BUTTON:
-			
-			break;
-		case AC_SHOW_REGISTER_BUTTON:
-			
-			break;
-		case SEE_SUBJECTS:
-			
-			break;
-		case SEE_COURSES:
-			
-			break;
+
+
 		case C_LOG_IN:
 			writeDatesInitSesion();
 			break;
@@ -144,7 +115,7 @@ public class ControllerClient implements ActionListener, ItemListener {
 				for (int i = 0; i < subjects.length; i++) {
 					subjects[i] = input.readUTF();
 				}
-				registerCourseJD = new JDRegisterCourse(this, teachers,subjects);
+				registerCourseJD = new JDRegisterCourse(this, teachers, subjects);
 				break;
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
@@ -188,13 +159,12 @@ public class ControllerClient implements ActionListener, ItemListener {
 				for (int i = 0; i < teachers1.length; i++) {
 					teachers1[i] = input.readUTF();
 				}
-				
+
 				int auxiliarC = input.readInt();
-				String[]courses1 = new String[auxiliarC];
+				String[] courses1 = new String[auxiliarC];
 				for (int i = 0; i < courses1.length; i++) {
 					courses1[i] = input.readUTF();
-				}	
-			
+				}
 
 				adminJF.setVisible(false);
 				asigCourseJD = new JDAsigCourse(this, courses1, teachers1);
@@ -203,7 +173,7 @@ public class ControllerClient implements ActionListener, ItemListener {
 			}
 
 			break;
-			
+
 		case ASIG_COURSE_TEACHER:
 			try {
 				output.writeInt(10);
@@ -214,7 +184,7 @@ public class ControllerClient implements ActionListener, ItemListener {
 				e.printStackTrace();
 			}
 			break;
-			
+
 		case ASIG_SUBJECT:
 			try {
 				output.writeInt(13);
@@ -223,12 +193,12 @@ public class ControllerClient implements ActionListener, ItemListener {
 				for (int i = 0; i < teachers1.length; i++) {
 					teachers1[i] = input.readUTF();
 				}
-				
+
 				int auxiliarS = input.readInt();
-				String[]subjects = new String[auxiliarS];
+				String[] subjects = new String[auxiliarS];
 				for (int i = 0; i < subjects.length; i++) {
 					subjects[i] = input.readUTF();
-				}	
+				}
 				adminJF.setVisible(false);
 				asigSubjectJD = new JDAsigSubject(this, subjects, teachers1);
 			} catch (IOException e) {
@@ -236,7 +206,7 @@ public class ControllerClient implements ActionListener, ItemListener {
 			}
 
 			break;
-			
+
 		case ASIG_SUBJECT_TEACHER:
 			try {
 				output.writeInt(11);
@@ -263,7 +233,7 @@ public class ControllerClient implements ActionListener, ItemListener {
 			try {
 				output.writeInt(14);
 				output.writeUTF(adminJF.getDatesAskCourse());
-				String datas  = input.readUTF();
+				String datas = input.readUTF();
 				System.out.println(datas);
 				seeCourses = new JDSeeStudentsCoursesSubject(this, datas.split(","), "Estudiante");
 				break;
@@ -272,7 +242,7 @@ public class ControllerClient implements ActionListener, ItemListener {
 				e.printStackTrace();
 			}
 			break;
-			
+
 		case ASIG_SUBJECT_TO_COURSE:
 			try {
 				output.writeInt(15);
@@ -281,19 +251,19 @@ public class ControllerClient implements ActionListener, ItemListener {
 				for (int i = 0; i < courses.length; i++) {
 					courses[i] = input.readUTF();
 				}
-				
+
 				int auxiliarS = input.readInt();
-				String[]subjects = new String[auxiliarS];
+				String[] subjects = new String[auxiliarS];
 				for (int i = 0; i < subjects.length; i++) {
 					subjects[i] = input.readUTF();
-				}	
+				}
 				adminJF.setVisible(false);
 				subjectCourseJD = new JDAsigSubjectCourse(this, subjects, courses);
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
 			break;
-			
+
 		case ADD_SUBJECT_TO_COURSE:
 			try {
 				output.writeInt(16);
@@ -305,14 +275,14 @@ public class ControllerClient implements ActionListener, ItemListener {
 			}
 			adminJF.setVisible(true);
 			break;
-			
+
 		case RETURN_PANEL_3:
 			adminJF.setVisible(true);
 			subjectCourseJD.setVisible(false);
 			break;
 
 		}
-		
+
 	}
 
 	private void coursesAndSubjects() {
@@ -370,7 +340,7 @@ public class ControllerClient implements ActionListener, ItemListener {
 		adminJF.setVisible(false);
 		adminJF = new JFAdmin(this);
 		ArrayList<String> teachers = new ArrayList<String>();
-		
+
 		try {
 			output.writeInt(4);
 			int quantityDates = input.readInt();
@@ -414,7 +384,8 @@ public class ControllerClient implements ActionListener, ItemListener {
 				} else if (datas[2].equals("Estudiante")) {
 
 				} else if (datas[2].equals("Docente")) {
-//					teacherJF = new JFTeacher(this, notes, subjects, courses);
+					
+//					teacherJF = new JFTeacher(this, subjects, courses);
 				}
 			} else {
 				loginJD.incorrectLogin();
