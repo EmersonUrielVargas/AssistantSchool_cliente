@@ -17,21 +17,25 @@ public class JPShowPanelNotes extends JPanel{
 	private JPNote jPNoteFinal;
 	
 	public JPShowPanelNotes(ControllerClient controller,String namePanel,String typeUser) {
-		super(new FlowLayout());
+		super(null);
 		this.setSize(900, 60);
 		this.listNotes = new JPNote[7];
-		initComponents(controller, formatTitle(namePanel, 20), typeUser);
+		initComponents(controller, namePanel, typeUser);
 	}
 
 	private void initComponents(ControllerClient controller, String namePanel,String typeUser) {
 		this.jLNamePanel = new JLBaseLabel(namePanel, Constants.FOURTEEN_BOLD_BASE_FONT, Constants.BASE_BLUE);
+		this.jLNamePanel.setBounds(10, 5, 170, 60);
 		this.jPNoteFinal = new JPNote("Nota Final");
 		this.add(jLNamePanel);
+		int positionX = 180;
 		for (int i = 0; i < listNotes.length; i++) {
 			listNotes[i] = new JPNote(controller, typeUser);
-			
+			listNotes[i].setBounds(positionX, 15, 90, 40);
 			this.add(listNotes[i]);
+			positionX+= 95;
 		}
+		this.jPNoteFinal.setBounds(positionX, 0, 90, 60);
 		this.add(jPNoteFinal);
 	}
 	
@@ -54,20 +58,6 @@ public class JPShowPanelNotes extends JPanel{
 		}
 	}
 
-	
-	private String formatTitle(String text,int sizeMax) {
-		String textFormat = text;
-		char[] textTochar = new char[sizeMax-text.length()];
-		if (textTochar.length < sizeMax) {
-			for (int i = 0; i < textTochar.length; i++) {
-				textTochar[i] = " ".charAt(0);
-			}
-		}
-		for (int i = 0; i < textTochar.length; i++) {
-			textFormat = textFormat +textTochar[i];
-		}
-		return textFormat;
-	}
 	
 	public String[] getValues() {
 		String[] values = new String[listNotes.length+2];

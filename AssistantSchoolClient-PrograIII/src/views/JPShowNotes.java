@@ -43,7 +43,8 @@ public class JPShowNotes extends JPanel{
 		for (int i = 0; i < notes.length; i++) {
 			notesData = notes[i].split("/");
 			notesLoad = new String[notesData.length-2];
-			jpanelNote = new JPShowPanelNotes(controller, notesData[0],typeUser);
+			String nameF = "<html>"+(((notesData[0]).split("-"))[0])+"<br>"+(((notesData[0]).split("-"))[1])+"</html>";
+			jpanelNote = new JPShowPanelNotes(controller, nameF,typeUser);
 			jpanelNote.addFinalNote(notesData[1]);
 			for (int j = 2; j < notesData.length; j++) {
 				notesLoad[j-2] = notesData[j];

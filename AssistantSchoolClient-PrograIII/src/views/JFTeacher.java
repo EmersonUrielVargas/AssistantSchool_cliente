@@ -65,14 +65,14 @@ public class JFTeacher extends JFrame{
 	
 	
 	public static void main(String[] args) throws FileNotFoundException, IOException {
-		String[] note = {"Laura Acevedo/4.5/Tema 1&4.3&logro dividir numeros&el taller estaba incompleto& /Tema 2&3.2&logro dividir numeros&el taller estaba incomplet& /Tema 3&3.5& & & /Tema 4&2.0& & & /",
-			"Joaquin Vega/2.0/Tema 1&4.3&logro dividir numeros&el taller estaba incompleto& /Tema 2&3.2&logro dividir numeros&el taller estaba incomplet& /Tema 3&3.5& & & /Tema 4&2.0& & & /Tema 5&2.0& & & /",
-			"Nomi mars/2.6/Tema 1&4.3&logro dividir numeros&el taller estaba incompleto& /Tema 2&3.2&logro dividir numeros&el taller estaba incomplet& /Tema 3&3.5& & & /Tema 4&2.0& & & /Tema 5&2.0& & & /",
-			"lito rodriguez/2.5/Tema 1&4.3&logro dividir numeros&el taller estaba incompleto& /Tema 2&3.2&logro dividir numeros&el taller estaba incomplet& /Tema 3&3.5& & & /Tema 4&2.0& & & /Tema 5&2.0& & & /",
-			"raychel ichibinz/2.4/Tema 1&4.3&logro dividir numeros&el taller estaba incompleto& /Tema 2&3.2&logro dividir numeros&el taller estaba incomplet& /Tema 3&3.5& & & /Tema 4&2.0& & & /",
-			"euyeni boss/2.3/Tema 1&4.3&logro dividir numeros&el taller estaba incompleto& /Tema 2&3.2&logro dividir numeros&el taller estaba incomplet& /Tema 3&3.5& & & /Tema 4&2.0& & & /",
-			"pol rubio/2.2/Tema 1&4.3&logro dividir numeros&el taller estaba incompleto& /Tema 2&3.2&logro dividir numeros&el taller estaba incomplet& /Tema 3&3.5& & & /Tema 4&2.0& & & /",
-			"diego rivera/2.1/Tema 1&4.3&logro dividir numeros&el taller estaba incompleto& /Tema 2&3.2&logro dividir numeros&el taller estaba incomplet& /Tema 3&3.5& & & /Tema 4&2.0& & & /"};
+		String[] note = {"Laura Acevedo-2411241134/4.5/Tema 1&4.3&logro dividir numeros&el taller estaba incompleto& /Tema 2&3.2&logro dividir numeros&el taller estaba incomplet& /Tema 3&3.5& & & /Tema 4&2.0& & & /",
+			"Joaquin Vega-1432114/2.0/Tema 1&4.3&logro dividir numeros&el taller estaba incompleto& /Tema 2&3.2&logro dividir numeros&el taller estaba incomplet& /Tema 3&3.5& & & /Tema 4&2.0& & & /Tema 5&2.0& & & /",
+			"Nomi mars-423412/2.6/Tema 1&4.3&logro dividir numeros&el taller estaba incompleto& /Tema 2&3.2&logro dividir numeros&el taller estaba incomplet& /Tema 3&3.5& & & /Tema 4&2.0& & & /Tema 5&2.0& & & /",
+			"lito rodriguez-42134/2.5/Tema 1&4.3&logro dividir numeros&el taller estaba incompleto& /Tema 2&3.2&logro dividir numeros&el taller estaba incomplet& /Tema 3&3.5& & & /Tema 4&2.0& & & /Tema 5&2.0& & & /",
+			"raychel ichibinz-42151/2.4/Tema 1&4.3&logro dividir numeros&el taller estaba incompleto& /Tema 2&3.2&logro dividir numeros&el taller estaba incomplet& /Tema 3&3.5& & & /Tema 4&2.0& & & /",
+			"euyeni boss-144134/2.3/Tema 1&4.3&logro dividir numeros&el taller estaba incompleto& /Tema 2&3.2&logro dividir numeros&el taller estaba incomplet& /Tema 3&3.5& & & /Tema 4&2.0& & & /",
+			"pol rubio-14342/2.2/Tema 1&4.3&logro dividir numeros&el taller estaba incompleto& /Tema 2&3.2&logro dividir numeros&el taller estaba incomplet& /Tema 3&3.5& & & /Tema 4&2.0& & & /",
+			"diego rivera-124534/2.1/Tema 1&4.3&logro dividir numeros&el taller estaba incompleto& /Tema 2&3.2&logro dividir numeros&el taller estaba incomplet& /Tema 3&3.5& & & /Tema 4&2.0& & & /"};
 		
 		String[] subject = {"calculo","algebra", "ecuaciones diferenciales"};
 		String[] course = {"sexto","sextoB", "noveno"};
