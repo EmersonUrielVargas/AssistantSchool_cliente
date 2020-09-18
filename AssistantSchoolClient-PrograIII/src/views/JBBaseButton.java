@@ -1,6 +1,7 @@
 package views;
 
 import java.awt.Color;
+import java.awt.event.ActionListener;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -18,12 +19,12 @@ public class JBBaseButton extends JButton {
 		this.setBorder(null);
 	}
 
-	public JBBaseButton(String imgPath, Color backgroundColor, ControllerClient controllerApp, Commands command) {
+	public JBBaseButton(String imgPath, Color backgroundColor, ActionListener ac, Commands command) {
 		this.setIcon(new ImageIcon(getClass().getResource(imgPath)));
 		this.setBackground(backgroundColor);
 		this.setBorder(null);
 		this.setActionCommand(command.toString());
-		this.addActionListener(controllerApp);
+		this.addActionListener(ac);
 	}
 
 	public JBBaseButton(String text, String imgPath, Color backgroundColor) {
@@ -33,13 +34,13 @@ public class JBBaseButton extends JButton {
 		this.setBorder(null);
 	}
 
-	public JBBaseButton(String routeImage, String routeImagePress, ControllerClient controllerApp, Commands command) {
+	public JBBaseButton(String routeImage, String routeImagePress, ActionListener ac, Commands command) {
 		this.setContentAreaFilled(false);
 		this.setFocusable(true);
 		this.setBorder(null);
 		this.setIcon(new ImageIcon(getClass().getResource(routeImage)));
 		this.setPressedIcon(new ImageIcon(getClass().getResource(routeImagePress)));
 		this.setActionCommand(command.toString());
-		this.addActionListener(controllerApp);
+		this.addActionListener(ac);
 	}
 }

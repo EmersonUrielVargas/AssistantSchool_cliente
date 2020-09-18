@@ -52,14 +52,14 @@ public class JFStudent extends JFrame{
 	}
 	
 	public static void main(String[] args) throws FileNotFoundException, IOException {
-		String[] note = {"calculo/4.5/4.3&logro dividir numeros&el taller estaba incompleto& /3.2&logro dividir numeros&el taller estaba incomplet& /3.5& & & /2.0& & & /",
-				"programacion/2.0/4.3&logro dividir numeros&el taller estaba incompleto& /3.2&logro dividir numeros&el taller estaba incomplet& /3.5& & & /2.0& & & /2.0& & & /",
-				"matematicas/2.0/4.3&logro dividir numeros&el taller estaba incompleto& /3.2&logro dividir numeros&el taller estaba incomplet& /3.5& & & /2.0& & & /2.0& & & /",
-				"español/2.0/4.3&logro dividir numeros&el taller estaba incompleto& /3.2&logro dividir numeros&el taller estaba incomplet& /3.5& & & /2.0& & & /2.0& & & /",
-				"sociales/2.0/4.3&logro dividir numeros&el taller estaba incompleto& /3.2&logro dividir numeros&el taller estaba incomplet& /3.5& & & /2.0& & & /",
-				"etica/2.0/4.3&logro dividir numeros&el taller estaba incompleto& /3.2&logro dividir numeros&el taller estaba incomplet& /3.5& & & /2.0& & & /",
-				"religion/2.0/4.3&logro dividir numeros&el taller estaba incompleto& /3.2&logro dividir numeros&el taller estaba incomplet& /3.5& & & /2.0& & & /",
-				"ed.fisica/2.0/4.3&logro dividir numeros&el taller estaba incompleto& /3.2&logro dividir numeros&el taller estaba incomplet& /3.5& & & /2.0& & & /"};
+		String[] note = {"calculo/4.5/Tema 1&4.3&logro dividir numeros&el taller estaba incompleto& /Tema 2&3.2&logro dividir numeros&el taller estaba incomplet& /Tema 3&3.5& & & /Tema 4&2.0& & & /",
+				"programacion/2.0/Tema 1&4.3&logro dividir numeros&el taller estaba incompleto& /Tema 2&3.2&logro dividir numeros&el taller estaba incomplet& /Tema 3&3.5& & & /Tema 4&2.0& & & /Tema 5&2.0& & & /",
+				"matematicas/2.6/Tema 1&4.3&logro dividir numeros&el taller estaba incompleto& /Tema 2&3.2&logro dividir numeros&el taller estaba incomplet& /Tema 3&3.5& & & /Tema 4&2.0& & & /Tema 5&2.0& & & /",
+				"español/2.5/Tema 1&4.3&logro dividir numeros&el taller estaba incompleto& /Tema 2&3.2&logro dividir numeros&el taller estaba incomplet& /Tema 3&3.5& & & /Tema 4&2.0& & & /Tema 5&2.0& & & /",
+				"sociales/2.4/Tema 1&4.3&logro dividir numeros&el taller estaba incompleto& /Tema 2&3.2&logro dividir numeros&el taller estaba incomplet& /Tema 3&3.5& & & /Tema 4&2.0& & & /",
+				"etica/2.3/Tema 1&4.3&logro dividir numeros&el taller estaba incompleto& /Tema 2&3.2&logro dividir numeros&el taller estaba incomplet& /Tema 3&3.5& & & /Tema 4&2.0& & & /",
+				"religion/2.2/Tema 1&4.3&logro dividir numeros&el taller estaba incompleto& /Tema 2&3.2&logro dividir numeros&el taller estaba incomplet& /Tema 3&3.5& & & /Tema 4&2.0& & & /",
+				"ed.fisica/2.1/Tema 1&4.3&logro dividir numeros&el taller estaba incompleto& /Tema 2&3.2&logro dividir numeros&el taller estaba incomplet& /Tema 3&3.5& & & /Tema 4&2.0& & & /"};
 		JFStudent jfStudent = new JFStudent(new ControllerClient(), note);
 	}
 	

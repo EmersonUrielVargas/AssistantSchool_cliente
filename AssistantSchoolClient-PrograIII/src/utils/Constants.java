@@ -138,6 +138,9 @@ public class Constants {
 		public static final String SAVE_COMMENTS_ICON = "/images/SAVE_COMMENTS_ICON.png";
 		public static final String SAVE_COMMENTS_ICON_PRESS = "/images/SAVE_COMMENTS_ICON_PRESS.png";
 		
+		public static final String SAVE_CHANGES_ICON = "/images/SAVE_CHANGES_ICON.png";
+		public static final String SAVE_CHANGES_ICON_PRESS = "/images/SAVE_CHANGES_ICON_PRESS.png";
+		
 		public static final String ICON_ALERT_RED = "/images/ALERT_ICON.png";
 
 

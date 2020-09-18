@@ -25,10 +25,11 @@ public class JPShowPanelNotes extends JPanel{
 
 	private void initComponents(ControllerClient controller, String namePanel) {
 		this.jLNamePanel = new JLBaseLabel(namePanel, Constants.FOURTEEN_BOLD_BASE_FONT, Constants.BASE_BLUE);
-		this.jPNoteFinal = new JPNote(controller, "Nota Final");
+		this.jPNoteFinal = new JPNote("Nota Final");
 		this.add(jLNamePanel);
 		for (int i = 0; i < listNotes.length; i++) {
-			listNotes[i] = new JPNote(controller);
+			listNotes[i] = new JPNote(controller, "Student");
+			
 			this.add(listNotes[i]);
 		}
 		this.add(jPNoteFinal);

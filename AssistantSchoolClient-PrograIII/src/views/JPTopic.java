@@ -1,33 +1,27 @@
 package views;
 
 import java.awt.FlowLayout;
-import java.awt.Frame;
-import java.awt.GridLayout;
 import java.awt.Point;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.FileNotFoundException;
-import java.io.IOException;
 
 import javax.swing.BorderFactory;
-import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import controller.Commands;
 import controller.ControllerClient;
 import utils.Constants;
 
-public class JPNote extends JPanel implements ActionListener{
-	
-	private JTFBaseTextField jtNote;
+public class JPTopic extends JPanel {
+	private JTFBaseTextField jtTopic;
 	private JBBaseButton jbshowcommits;
 	private JDialogCommitsNote jdcommentN;
 	
-	public JPNote(ControllerClient controller,String TypeUser) {
+	public JPTopic(ActionListener actionListener,String TypeUser) {
 		super(new FlowLayout());
 		this.setSize(15, 10);
-		init(controller);
+		init(actionListener);
 		this.setBorder(BorderFactory.createLineBorder(Constants.DARK_BLUE));
 	}
 	
@@ -40,7 +34,7 @@ public class JPNote extends JPanel implements ActionListener{
 		this.add(jtNote);
 	}
 	
-	private void init(ControllerClient controller) {
+	private void init(ActionListener actionListener) {
 		this.jtNote = new JTFBaseTextField(Constants.BASE_BLUE, Constants.TWENTY_BASE_FONT, 3);
 		this.jbshowcommits = new JBBaseButton(Constants.SHOW_COMMENTS_ICON, Constants.SHOW_COMMENTS_ICON_PRESS,this, Commands.AC_SHOW_COMMENTS_BUTTON);
 		this.jdcommentN = new JDialogCommitsNote(this);
@@ -114,13 +108,5 @@ public class JPNote extends JPanel implements ActionListener{
 		}
 		
 	}
-
-	public void setNoteEditable(boolean isEditable) {
-		this.jtNote.setEditable(isEditable);
-		
-	}
-	
-	
-	
 
 }
